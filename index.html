@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiteKnight.pro - Professional Internet Rescuer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --silver: #c0c0c0;
+            --gold: #d4af37;
+            --dark: #1a1a2e;
+            --darker: #0f0f1a;
+            --white: #f0f0f0;
+        }
+
+        body {
+            background: var(--darker);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(ellipse at center, #16213e 0%, var(--darker) 70%);
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 20 L50 20 L38 30 L42 45 L30 35 L18 45 L22 30 L10 20 L25 20 Z' fill='none' stroke='%23ffffff08' stroke-width='1'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .shield {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--silver), #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #8892b0;
+            max-width: 600px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            animation: bounce 2s infinite;
+            color: #8892b0;
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.5; }
+            50% { transform: translateY(10px); opacity: 1; }
+        }
+
+        /* Section Styling */
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Stats Bar */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            padding: 3rem 2rem;
+            background: var(--dark);
+            border-top: 1px solid #ffffff10;
+            border-bottom: 1px solid #ffffff10;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gold);
+        }
+
+        .stat .label {
+            color: #8892b0;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--dark);
+            border: 1px solid #ffffff10;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+        }
+
+        .service-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .service-card p {
+            color: #8892b0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .testimonial {
+            background: var(--dark);
+            border-left: 3px solid var(--gold);
+            padding: 1.5rem 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .testimonial .quote {
+            font-style: italic;
+            color: #ccd6f6;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .testimonial .author {
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .price-card {
+            background: var(--dark);
+            border: 1px solid #ffffff10;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card.featured {
+            border-color: var(--gold);
+        }
+
+        .price-card.featured::before {
+            content: 'MOST CHIVALROUS';
+            position: absolute;
+            top: 12px;
+            right: -30px;
+            background: var(--gold);
+            color: var(--darker);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.25rem 2rem;
+            transform: rotate(35deg);
+        }
+
+        .price-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 1rem 0;
+        }
+
+        .price-card .price span {
+            font-size: 0.9rem;
+            color: #8892b0;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .price-card ul li {
+            padding: 0.5rem 0;
+            color: #8892b0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #ffffff08;
+        }
+
+        .price-card ul li::before {
+            content: '\2694  ';
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--darker);
+        }
+
+        /* Code of Chivalry */
+        .code-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .code-list ol {
+            list-style: none;
+            counter-reset: chivalry;
+        }
+
+        .code-list ol li {
+            counter-increment: chivalry;
+            padding: 1rem 0;
+            border-bottom: 1px solid #ffffff08;
+            color: #ccd6f6;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .code-list ol li::before {
+            content: 'Article ' counter(chivalry, upper-roman) '. ';
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ffffff08;
+            padding: 1.5rem 0;
+        }
+
+        .faq-item h3 {
+            color: var(--white);
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item p {
+            color: #8892b0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: radial-gradient(ellipse at center, #16213e 0%, var(--darker) 70%);
+        }
+
+        .cta h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: #8892b0;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #4a5568;
+            font-size: 0.8rem;
+            border-top: 1px solid #ffffff08;
+        }
+
+        footer a {
+            color: #4a5568;
+            text-decoration: none;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #4a5568;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="shield">&#x1F6E1;</div>
+        <h1>WhiteKnight.pro</h1>
+        <p class="tagline">
+            Professional Online Chivalry Services.<br>
+            We defend strangers on the internet so <em>you</em> don't have to develop a personality.
+        </p>
+        <div class="scroll-indicator">&#x25BC;</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="number">14,392</div>
+            <div class="label">Damsels Defended (Unsolicited)</div>
+        </div>
+        <div class="stat">
+            <div class="number">0</div>
+            <div class="label">Thank Yous Received</div>
+        </div>
+        <div class="stat">
+            <div class="number">87,201</div>
+            <div class="label">Paragraphs Typed in Comments</div>
+        </div>
+        <div class="stat">
+            <div class="number">100%</div>
+            <div class="label">Conviction, 0% Self-Awareness</div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section>
+        <h2>Our Noble Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">&#x2694;</div>
+                <h3>Comment Section Warfare</h3>
+                <p>Our trained knights will compose 800-word replies to anyone who even mildly disagrees with someone online. Includes semicolon usage and at least one "actually."</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F4DC;</div>
+                <h3>Unsolicited Defense</h3>
+                <p>Did someone you've never met receive mild criticism? We'll leap in with a passionate monologue about respect, decency, and our vaguely related personal trauma.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F451;</div>
+                <h3>Moral High Ground Consulting</h3>
+                <p>We'll help you craft the perfect condescending reply that signals your virtue while subtly insulting everyone else's intelligence. PhD in Smugness included.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F3F0;</div>
+                <h3>DM Slide Protection</h3>
+                <p>After publicly defending someone's honor, we guarantee a follow-up "hey, saw you were having a rough day" DM within 4 minutes. Fedora tip optional (but encouraged).</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F4E2;</div>
+                <h3>Outrage Amplification</h3>
+                <p>Turn any minor disagreement into a full-blown discourse event. We specialize in misreading tone, assuming the worst, and making it about us somehow.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F9CE;</div>
+                <h3>Apology Ghostwriting</h3>
+                <p>When your white-knighting backfires (and it will), we'll write you an apology that somehow still makes you the hero. "I'm sorry you misunderstood my intentions."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <h2>Field Reports</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p class="quote">"I didn't ask for help. I didn't need help. I was winning the argument. Then this guy showed up and wrote a 12-paragraph essay about chivalry and tagged me in it. I've never been more exhausted."</p>
+                <p class="author">- Anonymous Person Who Was Doing Fine</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"He defended me online for three weeks straight, mass-reported the other person, then DMed me asking if I wanted to 'grab coffee sometime and talk about accountability in digital spaces.' Sir, this is a Wendy's Twitter account."</p>
+                <p class="author">- Fast Food Social Media Manager</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"My WhiteKnight consultant told me that disagreeing with someone's movie review is 'a form of violence.' I have since won every argument by simply being more offended than everyone else."</p>
+                <p class="author">- Satisfied Client, Gold Tier</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"I posted a slightly spicy take about pineapple on pizza and within seconds there was a man in my replies explaining how my opinion was 'contributing to a culture of culinary gatekeeping.' He had the WhiteKnight.pro badge in his bio."</p>
+                <p class="author">- Casualty of Discourse</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code of Chivalry -->
+    <section>
+        <h2>The Code of Digital Chivalry</h2>
+        <div class="code-list">
+            <ol>
+                <li>Thou shalt defend all strangers, especially those who did not request thy aid, for they know not what they need.</li>
+                <li>Thou shalt never read the full thread before replying. Context is the enemy of righteous indignation.</li>
+                <li>Thou shalt type "This. So much this." at least once per day to maintain thy virtuous standing.</li>
+                <li>Thou shalt always assume the worst interpretation of any statement, for nuance is the tool of the morally ambiguous.</li>
+                <li>Thou shalt write "I'm not like other guys" in thy dating profile, thereby ensuring all potential matches know of thy exceptional character.</li>
+                <li>Thou shalt screenshot thine own heroic replies and post them to thy story with the caption "Doing the work."</li>
+                <li>Thou shalt never accept a "thank you" gracefully. Instead, say "No need to thank me, it's just basic human decency" while expecting a parade.</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section>
+        <h2>Membership Tiers</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Squire</h3>
+                <div class="price">Free <span>/ forever</span></div>
+                <ul>
+                    <li>3 unsolicited defenses per month</li>
+                    <li>Basic moral superiority template</li>
+                    <li>Auto-reply: "Do better."</li>
+                    <li>"Nice Guy" starter flair</li>
+                </ul>
+                <button class="btn">Enlist Now</button>
+            </div>
+            <div class="price-card featured">
+                <h3>Paladin</h3>
+                <div class="price">$29 <span>/ month</span></div>
+                <ul>
+                    <li>Unlimited unsolicited defenses</li>
+                    <li>Advanced paragraph construction</li>
+                    <li>Priority DM slide access</li>
+                    <li>Custom fedora avatar pack</li>
+                    <li>Automated "well, actually" bot</li>
+                </ul>
+                <button class="btn">Mount Thy Steed</button>
+            </div>
+            <div class="price-card">
+                <h3>Grandmaster</h3>
+                <div class="price">$99 <span>/ month</span></div>
+                <ul>
+                    <li>Everything in Paladin</li>
+                    <li>Personal outrage consultant</li>
+                    <li>24/7 thread monitoring</li>
+                    <li>Gaslighting-proof armor</li>
+                    <li>Annual "Hero Nobody Asked For" trophy</li>
+                </ul>
+                <button class="btn">Ascend</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2>Frequently Questioned Motives</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>Is this a real service?</h3>
+                <p>Absolutely not. But neither is the moral authority you feel when you type "Educate yourself" to a stranger, and that hasn't stopped anyone.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What if the person I'm defending doesn't want my help?</h3>
+                <p>That's never stopped a true White Knight before. Our proprietary IgnoreConsent&trade; algorithm ensures you keep going regardless of all social cues.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I white-knight for someone who is objectively wrong?</h3>
+                <p>That's actually our specialty. The less defensible the position, the more heroic you look. We call this the Martyrdom Multiplier.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What's your refund policy?</h3>
+                <p>A true knight never retreats. There are no refunds, only "learning experiences" and "growth opportunities" that we will passive-aggressively reference later.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer corporate plans?</h3>
+                <p>Yes. Our Enterprise White Knight Suite includes automated PR apologies, a dedicated "thoughts and prayers" response team, and a CEO who "takes full responsibility" while changing absolutely nothing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta">
+        <h2>Ready to Defend Strangers Who Didn't Ask?</h2>
+        <p>Join thousands of self-appointed heroes. No experience necessary. No self-awareness required. Just an internet connection and an unshakeable belief that you're helping.</p>
+        <button class="btn" onclick="alert('Your application has been received. A carrier pigeon has been dispatched. Please wait 6-8 business fortnights.')">Begin Thy Quest</button>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+        <p>
+            <strong>DISCLAIMER:</strong> WhiteKnight.pro is a satirical website. No actual white-knighting services are offered, sold, or endorsed.
+            Any resemblance to real internet behavior is entirely intentional and deeply unfortunate.
+            This site is a parody. If you found yourself personally attacked by this page, that's called "self-reflection" and it's free of charge.
+            No fedoras were harmed in the making of this website.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 WhiteKnight.pro &mdash; A Division of Nobody Asked Industries, LLC</p>
+        <p><a href="#">Privacy Policy</a> (We read all your threads anyway)</p>
+    </footer>
+
+</body>
+</html>
