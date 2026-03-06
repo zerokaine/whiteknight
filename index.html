@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhiteKnight.pro - Professional Internet Rescuer</title>
+    <title>WhiteKnight.pro - M'lady Deserves Better Than This Timeline</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=MedievalSharp&family=Inter:wght@400;600&family=Permanent+Marker&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -15,13 +15,48 @@
             --dark: #1a1a2e;
             --darker: #0f0f1a;
             --white: #f0f0f0;
+            --neon-purple: #bf00ff;
+            --cringe-pink: #ff69b4;
         }
 
-        body {
-            background: var(--darker);
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+        /* SPARKLE CURSOR */
+        body { background: var(--darker); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='28' font-size='28'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E") 4 4, auto; }
+
+        /* Particle canvas */
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+        /* SPARKLE TRAIL CANVAS */
+        #sparkle-trail { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
+
+        /* Marquee Banner */
+        .marquee-bar {
+            background: linear-gradient(90deg, var(--gold), #ff6b35, var(--cringe-pink), var(--neon-purple), var(--gold));
+            background-size: 300% 100%;
+            animation: marquee-bg 4s linear infinite;
+            padding: 0.5rem 0;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 0.85rem;
+            color: var(--darker);
+            white-space: nowrap;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .marquee-bar .marquee-content {
+            display: inline-block;
+            animation: scroll-marquee 20s linear infinite;
+        }
+
+        @keyframes scroll-marquee {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-200%); }
+        }
+
+        @keyframes marquee-bg {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
         }
 
         /* Hero Section */
@@ -45,74 +80,183 @@
             opacity: 0.3;
         }
 
-        .shield {
-            font-size: 8rem;
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(212,175,55,0.03) 50%, transparent 60%);
+            background-size: 200% 200%;
+            animation: holy-light 5s ease-in-out infinite;
+        }
+
+        @keyframes holy-light {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+        }
+
+        .shield-container {
             position: relative;
             z-index: 1;
+        }
+
+        .shield {
+            font-size: 10rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite, glow-pulse 2s ease-in-out infinite alternate;
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+        }
+
+        .shield-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            animation: ring-spin 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        .shield-ring:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            animation-direction: reverse;
+            animation-duration: 15s;
+            border-style: dashed;
+        }
+
+        .shield-ring:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            animation-duration: 20s;
+            border-style: dotted;
+        }
+
+        @keyframes ring-spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes glow-pulse {
+            from { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
+            to { filter: drop-shadow(0 0 60px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 100px rgba(191, 0, 255, 0.3)); }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
         }
 
         .hero h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-size: clamp(2.5rem, 7vw, 6rem);
             font-weight: 900;
-            background: linear-gradient(135deg, var(--silver), #fff, var(--gold));
+            background: linear-gradient(135deg, var(--silver), #fff, var(--gold), var(--cringe-pink), var(--neon-purple), var(--gold));
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: rainbow-shift 6s ease-in-out infinite;
             margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
+            text-shadow: none;
+        }
+
+        @keyframes rainbow-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero .subtitle {
+            font-family: 'MedievalSharp', cursive;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: var(--gold);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            animation: flicker 3s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.3; }
+            94% { opacity: 1; }
+            96% { opacity: 0.5; }
+            97% { opacity: 1; }
         }
 
         .hero .tagline {
             font-size: clamp(1rem, 2.5vw, 1.5rem);
             color: #8892b0;
-            max-width: 600px;
-            line-height: 1.6;
+            max-width: 700px;
+            line-height: 1.8;
             position: relative;
             z-index: 1;
         }
 
-        .hero .tagline em {
-            color: var(--gold);
-            font-style: normal;
+        .hero .tagline em { color: var(--gold); font-style: normal; }
+        .hero .tagline .cringe { color: var(--cringe-pink); font-family: 'Permanent Marker', cursive; }
+        .hero .tagline .neon { color: var(--neon-purple); text-shadow: 0 0 10px var(--neon-purple); }
+
+        .typing-effect {
+            display: inline-block;
+            border-right: 2px solid var(--gold);
+            animation: blink-cursor 0.7s step-end infinite;
+            padding-right: 4px;
+            position: relative;
+            z-index: 1;
+            color: var(--cringe-pink);
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-top: 1rem;
+            min-height: 2rem;
         }
+
+        @keyframes blink-cursor { 50% { border-color: transparent; } }
 
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
             animation: bounce 2s infinite;
-            color: #8892b0;
-            font-size: 1.5rem;
+            color: var(--gold);
+            font-size: 2rem;
             z-index: 1;
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); opacity: 0.5; }
-            50% { transform: translateY(10px); opacity: 1; }
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(15px) scale(1.2); opacity: 1; }
         }
 
         /* Section Styling */
         section {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         h2 {
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--gold);
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
             text-align: center;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #8892b0;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
         }
 
         /* Stats Bar */
@@ -123,31 +267,35 @@
             flex-wrap: wrap;
             padding: 3rem 2rem;
             background: var(--dark);
-            border-top: 1px solid #ffffff10;
-            border-bottom: 1px solid #ffffff10;
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            position: relative;
+            z-index: 1;
         }
 
-        .stat {
-            text-align: center;
-        }
+        .stat { text-align: center; }
 
         .stat .number {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
             color: var(--gold);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
-        .stat .label {
-            color: #8892b0;
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
+        .stat .label { color: #8892b0; font-size: 0.85rem; margin-top: 0.25rem; }
+
+        /* LIVE COUNTER effect */
+        .stat .number[data-counting] { animation: count-glow 0.5s ease-out; }
+        @keyframes count-glow {
+            0% { text-shadow: 0 0 30px var(--gold); transform: scale(1.1); }
+            100% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); transform: scale(1); }
         }
 
         /* Services */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
@@ -156,61 +304,265 @@
             border: 1px solid #ffffff10;
             border-radius: 12px;
             padding: 2rem;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--gold), transparent, var(--neon-purple), transparent);
+            animation: card-rotate 8s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::before { opacity: 0.1; }
 
         .service-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15), 0 0 30px rgba(191, 0, 255, 0.1);
         }
 
-        .service-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        @keyframes card-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .service-card h3 {
-            font-size: 1.2rem;
+        .service-card .icon { font-size: 3rem; margin-bottom: 1rem; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--white); }
+        .service-card p { color: #8892b0; line-height: 1.6; font-size: 0.95rem; }
+        .service-card .cringe-tag {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(191, 0, 255, 0.15);
+            border: 1px solid var(--neon-purple);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--neon-purple);
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* HALL OF FAME - Real Knights */
+        .hall-of-fame {
+            background: linear-gradient(180deg, var(--darker), var(--dark), var(--darker));
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hall-of-fame .inner { max-width: 1100px; margin: 0 auto; }
+
+        .knights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .knight-card {
+            background: var(--dark);
+            border: 1px solid #ffffff10;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .knight-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .knight-card .era-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .knight-card .era-badge.historical {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .knight-card .era-badge.internet {
+            background: rgba(191, 0, 255, 0.2);
+            color: var(--neon-purple);
+            border: 1px solid var(--neon-purple);
+        }
+
+        .knight-card .knight-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+        .knight-card h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .knight-card .years { color: var(--gold); font-size: 0.8rem; margin-bottom: 0.75rem; }
+        .knight-card p { color: #8892b0; font-size: 0.85rem; line-height: 1.5; margin-bottom: 1rem; }
+
+        .knight-card a.wiki-link {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.8rem;
+            border: 1px solid var(--gold);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .knight-card a.wiki-link:hover {
+            background: var(--gold);
+            color: var(--darker);
+        }
+
+        /* Cringe Wall of Fame */
+        .cringe-wall {
+            background: linear-gradient(180deg, var(--darker), #1a0a2e, var(--darker));
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cringe-wall .inner { max-width: 1100px; margin: 0 auto; }
+
+        .cringe-wall h2 { color: var(--neon-purple); text-shadow: 0 0 30px rgba(191, 0, 255, 0.5); }
+
+        .cringe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cringe-card {
+            background: rgba(191, 0, 255, 0.05);
+            border: 1px solid rgba(191, 0, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .cringe-card:hover {
+            border-color: var(--cringe-pink);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(191, 0, 255, 0.15);
+        }
+
+        .cringe-card .platform-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
             margin-bottom: 0.75rem;
-            color: var(--white);
         }
 
-        .service-card p {
-            color: #8892b0;
-            line-height: 1.6;
-            font-size: 0.95rem;
+        .cringe-card .platform-badge.twitter { background: rgba(29, 161, 242, 0.2); color: #1da1f2; border: 1px solid #1da1f2; }
+        .cringe-card .platform-badge.reddit { background: rgba(255, 69, 0, 0.2); color: #ff4500; border: 1px solid #ff4500; }
+        .cringe-card .platform-badge.youtube { background: rgba(255, 0, 0, 0.2); color: #ff0000; border: 1px solid #ff0000; }
+        .cringe-card .platform-badge.tiktok { background: rgba(255, 0, 80, 0.2); color: #ff0050; border: 1px solid #ff0050; }
+        .cringe-card .platform-badge.twitch { background: rgba(145, 70, 255, 0.2); color: #9146ff; border: 1px solid #9146ff; }
+
+        .cringe-card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--cringe-pink); }
+        .cringe-card p { color: #8892b0; font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.75rem; }
+        .cringe-card .cringe-meter { margin-top: 0.5rem; }
+        .cringe-card .cringe-meter label { font-size: 0.7rem; color: #8892b0; display: block; margin-bottom: 0.25rem; }
+        .cringe-card .cringe-meter .bar {
+            height: 6px;
+            background: #ffffff10;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .cringe-card .cringe-meter .bar .fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--cringe-pink), var(--neon-purple));
+            transition: width 1s ease-out;
+        }
+
+        .cringe-card a.source-link {
+            display: inline-block;
+            color: var(--neon-purple);
+            text-decoration: none;
+            font-size: 0.75rem;
+            border: 1px solid var(--neon-purple);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .cringe-card a.source-link:hover {
+            background: var(--neon-purple);
+            color: #fff;
         }
 
         /* Testimonials */
-        .testimonials {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+        .testimonials { display: flex; flex-direction: column; gap: 1.5rem; }
 
         .testimonial {
             background: var(--dark);
             border-left: 3px solid var(--gold);
             padding: 1.5rem 2rem;
             border-radius: 0 8px 8px 0;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .testimonial .quote {
-            font-style: italic;
+        .testimonial:hover {
+            border-left-color: var(--cringe-pink);
+            transform: translateX(8px);
+            box-shadow: -4px 0 20px rgba(255, 105, 180, 0.1);
+        }
+
+        .testimonial .quote { font-style: italic; color: #ccd6f6; line-height: 1.7; margin-bottom: 0.75rem; }
+        .testimonial .author { color: var(--gold); font-size: 0.85rem; }
+        .testimonial .cringe-level {
+            position: absolute;
+            top: 0.75rem;
+            right: 1rem;
+            font-size: 0.7rem;
+            color: var(--neon-purple);
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Code of Chivalry */
+        .code-list { max-width: 750px; margin: 0 auto; }
+        .code-list ol { list-style: none; counter-reset: chivalry; }
+        .code-list ol li {
+            counter-increment: chivalry;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #ffffff08;
             color: #ccd6f6;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            transition: all 0.3s;
         }
-
-        .testimonial .author {
+        .code-list ol li:hover {
+            padding-left: 1rem;
+            border-bottom-color: var(--gold);
+        }
+        .code-list ol li::before {
+            content: 'Article ' counter(chivalry, upper-roman) '. ';
             color: var(--gold);
-            font-size: 0.85rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
         }
 
         /* Pricing */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
@@ -222,59 +574,43 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s;
         }
+
+        .price-card:hover { transform: translateY(-6px); }
 
         .price-card.featured {
             border-color: var(--gold);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .price-card.legendary {
+            border-color: var(--neon-purple);
+            background: linear-gradient(180deg, var(--dark), rgba(191, 0, 255, 0.05));
         }
 
         .price-card.featured::before {
             content: 'MOST CHIVALROUS';
-            position: absolute;
-            top: 12px;
-            right: -30px;
-            background: var(--gold);
-            color: var(--darker);
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 0.25rem 2rem;
-            transform: rotate(35deg);
+            position: absolute; top: 12px; right: -30px;
+            background: var(--gold); color: var(--darker);
+            font-size: 0.65rem; font-weight: 700;
+            padding: 0.25rem 2rem; transform: rotate(35deg);
         }
 
-        .price-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+        .price-card.legendary::before {
+            content: 'LEGENDARY SIMP';
+            position: absolute; top: 12px; right: -25px;
+            background: var(--neon-purple); color: #fff;
+            font-size: 0.65rem; font-weight: 700;
+            padding: 0.25rem 2rem; transform: rotate(35deg);
         }
 
-        .price-card .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin: 1rem 0;
-        }
-
-        .price-card .price span {
-            font-size: 0.9rem;
-            color: #8892b0;
-        }
-
-        .price-card ul {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-
-        .price-card ul li {
-            padding: 0.5rem 0;
-            color: #8892b0;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #ffffff08;
-        }
-
-        .price-card ul li::before {
-            content: '\2694  ';
-        }
+        .price-card h3 { font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .price-card .price { font-size: 2.5rem; font-weight: 700; color: var(--gold); margin: 1rem 0; }
+        .price-card .price span { font-size: 0.9rem; color: #8892b0; }
+        .price-card ul { list-style: none; margin: 1.5rem 0; text-align: left; }
+        .price-card ul li { padding: 0.5rem 0; color: #8892b0; font-size: 0.9rem; border-bottom: 1px solid #ffffff08; }
+        .price-card ul li::before { content: '\2694  '; }
 
         .btn {
             display: inline-block;
@@ -287,94 +623,163 @@
             transition: all 0.3s;
             cursor: pointer;
             background: transparent;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn:hover {
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
             background: var(--gold);
-            color: var(--darker);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+            z-index: -1;
         }
 
-        /* Code of Chivalry */
-        .code-list {
-            max-width: 700px;
-            margin: 0 auto;
+        .btn:hover { color: var(--darker); }
+        .btn:hover::after { width: 300px; height: 300px; }
+
+        .btn.btn-neon {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            box-shadow: 0 0 15px rgba(191, 0, 255, 0.2);
         }
 
-        .code-list ol {
-            list-style: none;
-            counter-reset: chivalry;
+        .btn.btn-neon::after { background: var(--neon-purple); }
+        .btn.btn-neon:hover { color: #fff; }
+
+        /* Cringe-o-meter widget */
+        .cringeometer {
+            max-width: 600px;
+            margin: 3rem auto;
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark);
+            border-radius: 16px;
+            border: 1px solid var(--gold);
+            position: relative;
+            z-index: 1;
         }
 
-        .code-list ol li {
-            counter-increment: chivalry;
-            padding: 1rem 0;
-            border-bottom: 1px solid #ffffff08;
-            color: #ccd6f6;
-            line-height: 1.6;
-            font-size: 0.95rem;
+        .cringeometer h3 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.3rem;
+            color: var(--cringe-pink);
+            margin-bottom: 1rem;
         }
 
-        .code-list ol li::before {
-            content: 'Article ' counter(chivalry, upper-roman) '. ';
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
+        .meter-bar {
+            height: 24px;
+            background: #ffffff10;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .meter-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00ff00, #ffff00, #ff8800, #ff0000, var(--neon-purple));
+            border-radius: 12px;
+            transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .meter-fill.animated { width: 94%; }
+
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #8892b0;
+        }
+
+        /* Floating badges on scroll */
+        .float-badge {
+            position: fixed;
+            z-index: 50;
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .float-badge.visible { opacity: 1; animation: badge-float 3s ease-in-out infinite; }
+
+        .float-badge.left { left: 1rem; top: 40%; }
+        .float-badge.right { right: 1rem; top: 55%; }
+
+        @keyframes badge-float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
         }
 
         /* FAQ */
-        .faq-list {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid #ffffff08;
-            padding: 1.5rem 0;
-        }
-
-        .faq-item h3 {
-            color: var(--white);
-            font-size: 1.05rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .faq-item p {
-            color: #8892b0;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid #ffffff08; padding: 1.5rem 0; cursor: pointer; transition: all 0.3s; }
+        .faq-item:hover { padding-left: 0.5rem; }
+        .faq-item h3 { color: var(--white); font-size: 1.05rem; margin-bottom: 0.75rem; }
+        .faq-item h3::before { content: 'Q: '; color: var(--gold); font-family: 'Cinzel', serif; }
+        .faq-item p { color: #8892b0; line-height: 1.6; font-size: 0.95rem; }
 
         /* CTA */
         .cta {
             text-align: center;
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             background: radial-gradient(ellipse at center, #16213e 0%, var(--darker) 70%);
+            position: relative;
+            z-index: 1;
         }
 
-        .cta h2 {
-            margin-bottom: 1rem;
-        }
+        .cta h2 { margin-bottom: 1rem; font-size: 2.5rem; }
+        .cta p { color: #8892b0; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7; }
 
-        .cta p {
-            color: #8892b0;
-            margin-bottom: 2rem;
+        .cta .oath-text {
+            font-family: 'MedievalSharp', cursive;
+            color: var(--gold);
+            font-size: 1.1rem;
             max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            margin: 2rem auto;
+            line-height: 1.8;
+            opacity: 0.8;
         }
 
-        /* Footer */
-        footer {
+        /* Visitor counter (fake) */
+        .visitor-counter {
             text-align: center;
-            padding: 2rem;
-            color: #4a5568;
-            font-size: 0.8rem;
+            padding: 1rem;
+            background: var(--dark);
             border-top: 1px solid #ffffff08;
+            border-bottom: 1px solid #ffffff08;
+            position: relative;
+            z-index: 1;
         }
 
-        footer a {
-            color: #4a5568;
+        .visitor-counter img { vertical-align: middle; }
+        .visitor-counter span {
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            background: #000;
+            padding: 0.25rem 0.5rem;
+            border: 1px inset #333;
+            font-size: 0.9rem;
+            margin: 0 0.5rem;
+        }
+
+        .visitor-counter .webring {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: #8892b0;
+        }
+
+        .visitor-counter .webring a {
+            color: var(--gold);
             text-decoration: none;
         }
 
@@ -387,114 +792,396 @@
             color: #4a5568;
             font-size: 0.75rem;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #4a5568;
+            font-size: 0.8rem;
+            border-top: 1px solid #ffffff08;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer a { color: #4a5568; text-decoration: none; }
+
+        /* Konami code easter egg overlay */
+        .konami-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .konami-overlay.active { display: flex; }
+
+        .konami-overlay .mega-fedora {
+            font-size: 15rem;
+            animation: mega-spin 2s linear infinite;
+        }
+
+        .konami-overlay p {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-top: 1rem;
+        }
+
+        .konami-overlay .close-btn {
+            margin-top: 2rem;
+            padding: 0.5rem 2rem;
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        @keyframes mega-spin {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--dark);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            color: var(--white);
+            font-size: 0.85rem;
+            z-index: 200;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 350px;
+        }
+
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast .toast-icon { font-size: 1.5rem; margin-right: 0.5rem; vertical-align: middle; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats { gap: 1.5rem; }
+            .knight-card, .cringe-card { padding: 1rem; }
+            .float-badge { display: none; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Particle effect canvas -->
+    <canvas id="particles"></canvas>
+    <!-- Sparkle cursor trail -->
+    <canvas id="sparkle-trail"></canvas>
+
+    <!-- Floating side badges -->
+    <div class="float-badge left visible">&#x1F6E1;</div>
+    <div class="float-badge right visible">&#x2694;</div>
+
+    <!-- MARQUEE BANNER (maximum 2003 energy) -->
+    <div class="marquee-bar">
+        <span class="marquee-content">
+            &#x2694; WELCOME NOBLE SIRS AND M'LADIES &#x2694; NOW ACCEPTING APPLICATIONS FOR SEASON 7 OF UNSOLICITED DEFENDING &#x2694; NEW: PREMIUM FEDORA SKINS UNLOCKED &#x2694; "I RESPECTFULLY DISAGREE" BOT NOW IN BETA &#x2694; REMINDER: SHE'S NOT GONNA DM YOU BACK BRO &#x2694; WHITE KNIGHTING IS NOT A PERSONALITY TRAIT (OR IS IT?) &#x2694; THIS IS SATIRE PLEASE DON'T @ US &#x2694;
+        </span>
+    </div>
+
     <!-- Hero -->
     <div class="hero">
-        <div class="shield">&#x1F6E1;</div>
+        <div class="shield-container">
+            <div class="shield-ring"></div>
+            <div class="shield-ring"></div>
+            <div class="shield-ring"></div>
+            <div class="shield">&#x1F6E1;</div>
+        </div>
         <h1>WhiteKnight.pro</h1>
+        <p class="subtitle">~ Est. 2024 &bull; Protecting Internet Honor Since Dial-Up ~</p>
         <p class="tagline">
             Professional Online Chivalry Services.<br>
-            We defend strangers on the internet so <em>you</em> don't have to develop a personality.
+            We defend strangers on the internet so <em>you</em> don't have to develop a <span class="cringe">personality</span>.<br>
+            <span class="neon">No one asked. We showed up anyway.</span>
         </p>
-        <div class="scroll-indicator">&#x25BC;</div>
+        <div class="typing-effect" id="typing"></div>
+        <div class="scroll-indicator">&#x2193; SCROLL TO BEGIN THY QUEST &#x2193;</div>
     </div>
 
     <!-- Stats -->
     <div class="stats">
         <div class="stat">
-            <div class="number">14,392</div>
+            <div class="number" id="counter-1">0</div>
             <div class="label">Damsels Defended (Unsolicited)</div>
         </div>
         <div class="stat">
-            <div class="number">0</div>
+            <div class="number" style="color: #ff4444;">0</div>
             <div class="label">Thank Yous Received</div>
         </div>
         <div class="stat">
-            <div class="number">87,201</div>
+            <div class="number" id="counter-2">0</div>
             <div class="label">Paragraphs Typed in Comments</div>
         </div>
         <div class="stat">
             <div class="number">100%</div>
             <div class="label">Conviction, 0% Self-Awareness</div>
         </div>
+        <div class="stat">
+            <div class="number" id="counter-3">0</div>
+            <div class="label">Fedoras Tipped Per Hour</div>
+        </div>
     </div>
 
-    <!-- Services -->
+    <!-- Cringe-o-meter -->
     <section>
-        <h2>Our Noble Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="icon">&#x2694;</div>
-                <h3>Comment Section Warfare</h3>
-                <p>Our trained knights will compose 800-word replies to anyone who even mildly disagrees with someone online. Includes semicolon usage and at least one "actually."</p>
+        <div class="cringeometer">
+            <h3>LIVE CRINGE-O-METER</h3>
+            <div class="meter-bar">
+                <div class="meter-fill" id="cringe-meter"></div>
             </div>
-            <div class="service-card">
-                <div class="icon">&#x1F4DC;</div>
-                <h3>Unsolicited Defense</h3>
-                <p>Did someone you've never met receive mild criticism? We'll leap in with a passionate monologue about respect, decency, and our vaguely related personal trauma.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon">&#x1F451;</div>
-                <h3>Moral High Ground Consulting</h3>
-                <p>We'll help you craft the perfect condescending reply that signals your virtue while subtly insulting everyone else's intelligence. PhD in Smugness included.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon">&#x1F3F0;</div>
-                <h3>DM Slide Protection</h3>
-                <p>After publicly defending someone's honor, we guarantee a follow-up "hey, saw you were having a rough day" DM within 4 minutes. Fedora tip optional (but encouraged).</p>
-            </div>
-            <div class="service-card">
-                <div class="icon">&#x1F4E2;</div>
-                <h3>Outrage Amplification</h3>
-                <p>Turn any minor disagreement into a full-blown discourse event. We specialize in misreading tone, assuming the worst, and making it about us somehow.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon">&#x1F9CE;</div>
-                <h3>Apology Ghostwriting</h3>
-                <p>When your white-knighting backfires (and it will), we'll write you an apology that somehow still makes you the hero. "I'm sorry you misunderstood my intentions."</p>
+            <div class="meter-labels">
+                <span>Mild Concern</span>
+                <span>Peak Cringe</span>
+                <span>Call An Ambulance</span>
+                <span>DEFCON SIMP</span>
             </div>
         </div>
     </section>
 
+    <!-- Services -->
+    <section>
+        <h2>Our Noble Services</h2>
+        <p class="section-subtitle">all prices quoted in exposure bucks and emotional labor tokens</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">&#x2694;</div>
+                <h3>Comment Section Warfare</h3>
+                <p>Our trained knights will compose 800-word replies to anyone who even mildly disagrees with someone online. Includes semicolon usage, at least one "actually," and mandatory Oxford comma discourse.</p>
+                <span class="cringe-tag">REPLYGUY CERTIFIED</span>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F4DC;</div>
+                <h3>Unsolicited Defense-as-a-Service (UDaaS)</h3>
+                <p>Did someone you've never met receive mild criticism? We'll leap in with a passionate monologue about respect, decency, and our vaguely related personal trauma. Now with auto-tag for maximum visibility.</p>
+                <span class="cringe-tag">ENTERPRISE READY</span>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F451;</div>
+                <h3>Moral High Ground Consulting</h3>
+                <p>We'll help you craft the perfect condescending reply that signals your virtue while subtly insulting everyone else's intelligence. PhD in Smugness included. "I feel sorry for you" energy guaranteed.</p>
+                <span class="cringe-tag">HOLIER THAN THOU</span>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F3F0;</div>
+                <h3>DM Slide Protocol</h3>
+                <p>After publicly defending someone's honor, we guarantee a follow-up "hey, saw you were having a rough day :)" DM within 4 minutes. Fedora tip optional (but statistically inevitable). Includes m'lady greeting template pack.</p>
+                <span class="cringe-tag">0% SUCCESS RATE</span>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F4E2;</div>
+                <h3>Outrage Amplification Engine</h3>
+                <p>Turn any minor disagreement into a full-blown discourse event. We specialize in misreading tone, assuming the worst, screenshot-dunking, and making it about us somehow. Ratio protection sold separately.</p>
+                <span class="cringe-tag">MAIN CHARACTER ENERGY</span>
+            </div>
+            <div class="service-card">
+                <div class="icon">&#x1F9CE;</div>
+                <h3>Apology Ghostwriting</h3>
+                <p>When your white-knighting backfires (and it will), we'll write you an apology that somehow still makes you the hero. "I'm sorry you misunderstood my intentions." Includes passive-aggressive Notes App template.</p>
+                <span class="cringe-tag">NON-APOLOGY PRO</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================== -->
+    <!-- HALL OF FAME: REAL WHITE KNIGHTS -->
+    <!-- =============================== -->
+    <div class="hall-of-fame">
+        <div class="inner">
+            <h2>The Hall of Actually Noble Knights</h2>
+            <p class="section-subtitle">the OGs who did it IRL before it was cringe online. respect the lineage, kings.</p>
+            <div class="knights-grid">
+                <div class="knight-card">
+                    <span class="era-badge historical">HISTORICAL</span>
+                    <div class="knight-icon">&#x1F451;</div>
+                    <h3>William Marshal</h3>
+                    <div class="years">1146 &ndash; 1219</div>
+                    <p>Served five English kings, won 500+ tournament battles, and was called "the greatest knight that ever lived." Unlike internet white knights, he could actually fight.</p>
+                    <a class="wiki-link" href="https://en.wikipedia.org/wiki/William_Marshal,_1st_Earl_of_Pembroke" target="_blank" rel="noopener">Read His Legend &rarr;</a>
+                </div>
+                <div class="knight-card">
+                    <span class="era-badge historical">HISTORICAL</span>
+                    <div class="knight-icon">&#x2694;</div>
+                    <h3>Godfrey of Bouillon</h3>
+                    <div class="years">1060 &ndash; 1100</div>
+                    <p>Led the First Crusade, became the first ruler of Jerusalem, and refused the title of King because "only Christ could wear that crown." Peak humility or peak flex? Both.</p>
+                    <a class="wiki-link" href="https://en.wikipedia.org/wiki/Godfrey_of_Bouillon" target="_blank" rel="noopener">Read His Legend &rarr;</a>
+                </div>
+                <div class="knight-card">
+                    <span class="era-badge historical">HISTORICAL</span>
+                    <div class="knight-icon">&#x1F3F0;</div>
+                    <h3>El Cid (Rodrigo D&iacute;az)</h3>
+                    <div class="years">1043 &ndash; 1099</div>
+                    <p>Spanish knight so legendary they strapped his corpse to a horse and his enemies still ran. The original "didn't even need to be alive to win" energy.</p>
+                    <a class="wiki-link" href="https://en.wikipedia.org/wiki/El_Cid" target="_blank" rel="noopener">Read His Legend &rarr;</a>
+                </div>
+                <div class="knight-card">
+                    <span class="era-badge historical">HISTORICAL</span>
+                    <div class="knight-icon">&#x1F6E1;</div>
+                    <h3>Joan of Arc</h3>
+                    <div class="years">1412 &ndash; 1431</div>
+                    <p>A teenage peasant girl who heard voices, convinced a king to give her an army, and liberated France. The ultimate "hold my beer" moment in medieval history. Actually brave, actually heroic.</p>
+                    <a class="wiki-link" href="https://en.wikipedia.org/wiki/Joan_of_Arc" target="_blank" rel="noopener">Read Her Legend &rarr;</a>
+                </div>
+                <div class="knight-card">
+                    <span class="era-badge historical">HISTORICAL</span>
+                    <div class="knight-icon">&#x1F4DC;</div>
+                    <h3>Bayard (Pierre Terrail)</h3>
+                    <div class="years">1473 &ndash; 1524</div>
+                    <p>Known as "The Knight Without Fear and Beyond Reproach." Literally had the cleanest reputation in all of France. His Yelp reviews would be immaculate.</p>
+                    <a class="wiki-link" href="https://en.wikipedia.org/wiki/Pierre_Terrail,_seigneur_de_Bayard" target="_blank" rel="noopener">Read His Legend &rarr;</a>
+                </div>
+                <div class="knight-card">
+                    <span class="era-badge historical">HISTORICAL</span>
+                    <div class="knight-icon">&#x1F396;</div>
+                    <h3>Edward the Black Prince</h3>
+                    <div class="years">1330 &ndash; 1376</div>
+                    <p>Won the Battle of Cr&eacute;cy at age 16. Wore black armor because he understood personal branding centuries before LinkedIn existed. The OG dark mode user.</p>
+                    <a class="wiki-link" href="https://en.wikipedia.org/wiki/Edward,_the_Black_Prince" target="_blank" rel="noopener">Read His Legend &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================= -->
+    <!-- CRINGE WALL: INTERNET WHITE KNIGHTS -->
+    <!-- ================================= -->
+    <div class="cringe-wall">
+        <div class="inner">
+            <h2>The Cringe Archives</h2>
+            <p class="section-subtitle">documented incidents from the front lines of online simping. viewer discretion advised.</p>
+            <div class="cringe-grid">
+                <div class="cringe-card">
+                    <span class="platform-badge twitter">X / TWITTER</span>
+                    <h3>"Reply Guy" Phenomenon</h3>
+                    <p>The infamous species of man who replies to every single post by a woman with "Great take!" or a paragraph-long agreement. Documented extensively across all of Twitter/X. There are entire accounts dedicated to cataloging this behavior.</p>
+                    <div class="cringe-meter">
+                        <label>CRINGE INTENSITY</label>
+                        <div class="bar"><div class="fill" style="width: 78%"></div></div>
+                    </div>
+                    <a class="source-link" href="https://x.com/search?q=%22reply+guy%22" target="_blank" rel="noopener">Search on X &rarr;</a>
+                </div>
+                <div class="cringe-card">
+                    <span class="platform-badge reddit">REDDIT</span>
+                    <h3>r/WhiteKnighting Hall of Shame</h3>
+                    <p>An entire subreddit dedicated to documenting the finest specimens of unsolicited internet chivalry. From men defending corporations to guys writing essays about how "not all men" under every post. A museum of misplaced valor.</p>
+                    <div class="cringe-meter">
+                        <label>CRINGE INTENSITY</label>
+                        <div class="bar"><div class="fill" style="width: 88%"></div></div>
+                    </div>
+                    <a class="source-link" href="https://www.reddit.com/r/whiteknighting/" target="_blank" rel="noopener">Visit the Archives &rarr;</a>
+                </div>
+                <div class="cringe-card">
+                    <span class="platform-badge youtube">YOUTUBE</span>
+                    <h3>Twitch Donation Cringe Compilations</h3>
+                    <p>Legendary compilations of viewers donating hundreds of dollars to streamers with messages like "You're the only one who understands me" and "I know you'll read this one." Narrator: she did not read it.</p>
+                    <div class="cringe-meter">
+                        <label>CRINGE INTENSITY</label>
+                        <div class="bar"><div class="fill" style="width: 95%"></div></div>
+                    </div>
+                    <a class="source-link" href="https://www.youtube.com/results?search_query=white+knight+cringe+compilation" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+                </div>
+                <div class="cringe-card">
+                    <span class="platform-badge twitch">TWITCH</span>
+                    <h3>Mod Abuse Sagas</h3>
+                    <p>The tales of Twitch moderators who ban anyone who slightly disagrees with their favorite streamer, then DM said streamer paragraphs about "protecting the community." Power + parasocial = catastrophe.</p>
+                    <div class="cringe-meter">
+                        <label>CRINGE INTENSITY</label>
+                        <div class="bar"><div class="fill" style="width: 91%"></div></div>
+                    </div>
+                    <a class="source-link" href="https://www.youtube.com/results?search_query=twitch+mod+cringe+white+knight" target="_blank" rel="noopener">Witness the Carnage &rarr;</a>
+                </div>
+                <div class="cringe-card">
+                    <span class="platform-badge tiktok">TIKTOK</span>
+                    <h3>"I Would Never Treat You Like That" Duets</h3>
+                    <p>A genre of TikTok duet where a man stares intensely into the camera while a woman tells a story about a bad date, nodding solemnly and mouthing "I'm different." The secondhand embarrassment is measurable from space.</p>
+                    <div class="cringe-meter">
+                        <label>CRINGE INTENSITY</label>
+                        <div class="bar"><div class="fill" style="width: 97%"></div></div>
+                    </div>
+                    <a class="source-link" href="https://www.tiktok.com/search?q=white+knight+cringe" target="_blank" rel="noopener">Endure on TikTok &rarr;</a>
+                </div>
+                <div class="cringe-card">
+                    <span class="platform-badge twitter">X / TWITTER</span>
+                    <h3>Celebrity Defense Force</h3>
+                    <p>Stan accounts that write 40-tweet threads defending a celebrity who doesn't know they exist from criticism that was objectively fair. Often includes phrases like "protect them at all costs" and "the world doesn't deserve them."</p>
+                    <div class="cringe-meter">
+                        <label>CRINGE INTENSITY</label>
+                        <div class="bar"><div class="fill" style="width: 84%"></div></div>
+                    </div>
+                    <a class="source-link" href="https://x.com/search?q=%22protect+them+at+all+costs%22" target="_blank" rel="noopener">Search on X &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Testimonials -->
     <section>
-        <h2>Field Reports</h2>
+        <h2>Field Reports From the Cringe Front</h2>
+        <p class="section-subtitle">real stories* (*definitely made up but emotionally accurate)</p>
         <div class="testimonials">
             <div class="testimonial">
-                <p class="quote">"I didn't ask for help. I didn't need help. I was winning the argument. Then this guy showed up and wrote a 12-paragraph essay about chivalry and tagged me in it. I've never been more exhausted."</p>
-                <p class="author">- Anonymous Person Who Was Doing Fine</p>
+                <span class="cringe-level">CRINGE LVL: 7/10</span>
+                <p class="quote">"I didn't ask for help. I didn't need help. I was winning the argument. Then this guy showed up and wrote a 12-paragraph essay about chivalry, tagged me in it, pinned it to his profile, and changed his bio to 'Defender of [my username].' We have never interacted before."</p>
+                <p class="author">- Anonymous Person Who Was Doing Fine, M.D.</p>
             </div>
             <div class="testimonial">
-                <p class="quote">"He defended me online for three weeks straight, mass-reported the other person, then DMed me asking if I wanted to 'grab coffee sometime and talk about accountability in digital spaces.' Sir, this is a Wendy's Twitter account."</p>
-                <p class="author">- Fast Food Social Media Manager</p>
+                <span class="cringe-level">CRINGE LVL: 9/10</span>
+                <p class="quote">"He defended me online for three weeks straight, mass-reported the other person, created a Discord server called '[my name] Protection Squad,' then DMed me asking if I wanted to 'grab coffee sometime and talk about accountability in digital spaces.' Sir, this is a Wendy's Twitter account. I am a brand. I am not real."</p>
+                <p class="author">- Fast Food Social Media Manager (Full-time, Benefits)</p>
             </div>
             <div class="testimonial">
-                <p class="quote">"My WhiteKnight consultant told me that disagreeing with someone's movie review is 'a form of violence.' I have since won every argument by simply being more offended than everyone else."</p>
-                <p class="author">- Satisfied Client, Gold Tier</p>
+                <span class="cringe-level">CRINGE LVL: 11/10</span>
+                <p class="quote">"He donated $500 to my stream with the message 'You don't have to say my name, just knowing you saw this is enough.' I did not see it. My mod saw it. My mod is also a white knight. They are now fighting each other in my Discord. I have abandoned the server."</p>
+                <p class="author">- Twitch Streamer (Retired, PTSD)</p>
             </div>
             <div class="testimonial">
-                <p class="quote">"I posted a slightly spicy take about pineapple on pizza and within seconds there was a man in my replies explaining how my opinion was 'contributing to a culture of culinary gatekeeping.' He had the WhiteKnight.pro badge in his bio."</p>
-                <p class="author">- Casualty of Discourse</p>
+                <span class="cringe-level">CRINGE LVL: 8/10</span>
+                <p class="quote">"I posted a slightly spicy take about pineapple on pizza and within seconds there was a man in my replies explaining how my opinion was 'contributing to a culture of culinary gatekeeping and erasure of Hawaiian-Italian fusion identity.' He had the WhiteKnight.pro badge in his bio and an anime profile picture."</p>
+                <p class="author">- Casualty of Discourse, Hawaiian Pizza Truther</p>
+            </div>
+            <div class="testimonial">
+                <span class="cringe-level">CRINGE LVL: IMMEASURABLE</span>
+                <p class="quote">"He made a Google Slides presentation titled 'Why You Should Date Me: A Case Study in Emotional Availability' and sent it to a girl who said 'lol' to his tweet. It was 47 slides. Slide 23 was just a photo of him holding a cat with the caption 'I'm not like other guys. I have empathy.' I have the PDF if anyone wants it."</p>
+                <p class="author">- Witness Protection Program Participant</p>
             </div>
         </div>
     </section>
 
     <!-- Code of Chivalry -->
     <section>
-        <h2>The Code of Digital Chivalry</h2>
+        <h2>The Sacred Code of Digital Chivalry</h2>
+        <p class="section-subtitle">memorize these or face banishment from the discord server</p>
         <div class="code-list">
             <ol>
-                <li>Thou shalt defend all strangers, especially those who did not request thy aid, for they know not what they need.</li>
-                <li>Thou shalt never read the full thread before replying. Context is the enemy of righteous indignation.</li>
-                <li>Thou shalt type "This. So much this." at least once per day to maintain thy virtuous standing.</li>
-                <li>Thou shalt always assume the worst interpretation of any statement, for nuance is the tool of the morally ambiguous.</li>
-                <li>Thou shalt write "I'm not like other guys" in thy dating profile, thereby ensuring all potential matches know of thy exceptional character.</li>
-                <li>Thou shalt screenshot thine own heroic replies and post them to thy story with the caption "Doing the work."</li>
-                <li>Thou shalt never accept a "thank you" gracefully. Instead, say "No need to thank me, it's just basic human decency" while expecting a parade.</li>
+                <li>Thou shalt defend all strangers, especially those who did not request thy aid, for they know not what they need. Consent is a suggestion. Heroism is mandatory.</li>
+                <li>Thou shalt never read the full thread before replying. Context is the enemy of righteous indignation. Vibes-based justice only.</li>
+                <li>Thou shalt type "This. So much this." at least once per day, followed by "louder for the people in the back" to maintain thy virtuous standing.</li>
+                <li>Thou shalt always assume the worst interpretation of any statement, for nuance is the tool of the morally ambiguous. If it could be offensive, it IS offensive.</li>
+                <li>Thou shalt write "I'm not like other guys" in thy dating profile, thereby ensuring all potential matches know of thy exceptional character. Bonus points for "sapiosexual."</li>
+                <li>Thou shalt screenshot thine own heroic replies and post them to thy story with the caption "Doing the work" and a single black-and-white photo of yourself looking pensively out a window.</li>
+                <li>Thou shalt never accept a "thank you" gracefully. Instead, say "No need to thank me, it's just basic human decency" while secretly keeping a spreadsheet of favors owed.</li>
+                <li>Thou shalt use the phrase "as a male feminist" to preface all opinions, thereby rendering them immune to criticism.</li>
+                <li>Thou shalt refer to all women online as "queen" regardless of context, including arguments about fiscal policy and Elden Ring patch notes.</li>
+                <li>Thou shalt end every online argument with "I hope you find the healing you need" &mdash; the internet equivalent of a passive-aggressive nuclear strike.</li>
             </ol>
         </div>
     </section>
@@ -502,41 +1189,46 @@
     <!-- Pricing -->
     <section>
         <h2>Membership Tiers</h2>
+        <p class="section-subtitle">invest in your cringe portfolio today</p>
         <div class="pricing-grid">
             <div class="price-card">
                 <h3>Squire</h3>
-                <div class="price">Free <span>/ forever</span></div>
+                <div class="price">Free <span>/ forever (like your love)</span></div>
                 <ul>
                     <li>3 unsolicited defenses per month</li>
                     <li>Basic moral superiority template</li>
                     <li>Auto-reply: "Do better."</li>
                     <li>"Nice Guy" starter flair</li>
+                    <li>1 free "not all men" per week</li>
                 </ul>
-                <button class="btn">Enlist Now</button>
+                <button class="btn" onclick="showToast('&#x1F6E1;', 'Welcome, Squire. Your fedora is in the mail.')">Enlist Now</button>
             </div>
             <div class="price-card featured">
                 <h3>Paladin</h3>
-                <div class="price">$29 <span>/ month</span></div>
+                <div class="price">$29 <span>/ month (she won't notice)</span></div>
                 <ul>
                     <li>Unlimited unsolicited defenses</li>
                     <li>Advanced paragraph construction</li>
                     <li>Priority DM slide access</li>
-                    <li>Custom fedora avatar pack</li>
+                    <li>Custom fedora avatar pack (12 colors)</li>
                     <li>Automated "well, actually" bot</li>
+                    <li>"I respectfully disagree" macro</li>
                 </ul>
-                <button class="btn">Mount Thy Steed</button>
+                <button class="btn" onclick="showToast('&#x2694;', 'M\'lady would be proud. If she knew you existed.')">Mount Thy Steed</button>
             </div>
-            <div class="price-card">
-                <h3>Grandmaster</h3>
-                <div class="price">$99 <span>/ month</span></div>
+            <div class="price-card legendary">
+                <h3>Grandmaster Simp</h3>
+                <div class="price">$99 <span>/ month (tax deductible if you cry)</span></div>
                 <ul>
                     <li>Everything in Paladin</li>
-                    <li>Personal outrage consultant</li>
-                    <li>24/7 thread monitoring</li>
-                    <li>Gaslighting-proof armor</li>
+                    <li>Personal outrage consultant (24/7)</li>
+                    <li>Real-time thread monitoring AI</li>
+                    <li>Gaslighting-proof adamantine armor</li>
                     <li>Annual "Hero Nobody Asked For" trophy</li>
+                    <li>Custom body pillow of your moral high ground</li>
+                    <li>Restraining order legal defense fund</li>
                 </ul>
-                <button class="btn">Ascend</button>
+                <button class="btn btn-neon" onclick="showToast('&#x1F451;', 'You have ascended beyond cringe into a realm of pure, unfiltered delusion. Welcome home.')">ASCEND TO LEGEND</button>
             </div>
         </div>
     </section>
@@ -544,26 +1236,35 @@
     <!-- FAQ -->
     <section>
         <h2>Frequently Questioned Motives</h2>
+        <p class="section-subtitle">yes we've heard it all. no we will not stop.</p>
         <div class="faq-list">
             <div class="faq-item">
                 <h3>Is this a real service?</h3>
-                <p>Absolutely not. But neither is the moral authority you feel when you type "Educate yourself" to a stranger, and that hasn't stopped anyone.</p>
+                <p>Absolutely not. But neither is the moral authority you feel when you type "Educate yourself" to a stranger at 3 AM in your underwear, and that hasn't stopped anyone. This is satire. If you're reading this and think "haha yeah OTHER people do this" &mdash; it's you. You're the people.</p>
             </div>
             <div class="faq-item">
                 <h3>What if the person I'm defending doesn't want my help?</h3>
-                <p>That's never stopped a true White Knight before. Our proprietary IgnoreConsent&trade; algorithm ensures you keep going regardless of all social cues.</p>
+                <p>That's never stopped a true White Knight before. Our proprietary IgnoreConsent&trade; algorithm ensures you keep going regardless of all social cues, including the words "please stop," "I didn't ask," and being blocked.</p>
             </div>
             <div class="faq-item">
                 <h3>Can I white-knight for someone who is objectively wrong?</h3>
-                <p>That's actually our specialty. The less defensible the position, the more heroic you look. We call this the Martyrdom Multiplier.</p>
+                <p>That's actually our specialty. The less defensible the position, the more heroic you look. We call this the Martyrdom Multiplier&trade;. Our top-rated knight once defended a person who said the sun revolves around the earth. He got 4,000 retweets and a date (with himself).</p>
             </div>
             <div class="faq-item">
                 <h3>What's your refund policy?</h3>
-                <p>A true knight never retreats. There are no refunds, only "learning experiences" and "growth opportunities" that we will passive-aggressively reference later.</p>
+                <p>A true knight never retreats. There are no refunds, only "learning experiences" and "growth opportunities" that we will passive-aggressively reference in a subtweet three months from now.</p>
             </div>
             <div class="faq-item">
                 <h3>Do you offer corporate plans?</h3>
-                <p>Yes. Our Enterprise White Knight Suite includes automated PR apologies, a dedicated "thoughts and prayers" response team, and a CEO who "takes full responsibility" while changing absolutely nothing.</p>
+                <p>Yes. Our Enterprise White Knight Suite&trade; includes automated PR apologies, a dedicated "thoughts and prayers" response team, a CEO who "takes full responsibility" while changing absolutely nothing, and a Chief Empathy Officer who cries on LinkedIn once a quarter.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is white-knighting the same as being a good person?</h3>
+                <p>Absolutely not. Good people help others without expecting anything in return and without making it about themselves. White knights help others specifically to make it about themselves, then get angry when the person they "saved" doesn't worship them. It's the difference between holding a door open and holding a door open while maintaining aggressive eye contact and saying "you're welcome" before they even walk through.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What's the difference between a simp and a white knight?</h3>
+                <p>A simp throws money at the problem. A white knight throws paragraphs. A true Grandmaster does both while maintaining a Google Doc of every nice thing they've ever done, sorted by date and perceived gratitude level.</p>
             </div>
         </div>
     </section>
@@ -571,8 +1272,24 @@
     <!-- CTA -->
     <div class="cta">
         <h2>Ready to Defend Strangers Who Didn't Ask?</h2>
-        <p>Join thousands of self-appointed heroes. No experience necessary. No self-awareness required. Just an internet connection and an unshakeable belief that you're helping.</p>
-        <button class="btn" onclick="alert('Your application has been received. A carrier pigeon has been dispatched. Please wait 6-8 business fortnights.')">Begin Thy Quest</button>
+        <p>Join thousands of self-appointed heroes. No experience necessary. No self-awareness required. No bitches obtained. Just an internet connection and an unshakeable belief that you're helping when literally no one thinks you are.</p>
+        <div class="oath-text">
+            "I solemnly swear to insert myself into conversations uninvited,<br>
+            to type paragraphs no one will read,<br>
+            to defend honor no one questioned,<br>
+            and to DM 'hey' afterwards.<br>
+            So help me God (and my anime wallpaper)."
+        </div>
+        <button class="btn btn-neon" onclick="activateOath()">&#x2694; SWEAR THE OATH &#x2694;</button>
+    </div>
+
+    <!-- Retro visitor counter -->
+    <div class="visitor-counter">
+        <span id="visitor-count">000,069,420</span> BRAVE SOULS HAVE VISITED THIS PAGE
+        <div class="webring">
+            &#x2190; <a href="#">Previous</a> | <a href="#">ChivalryRing</a> | <a href="#">Next</a> &#x2192;
+            <br>Best viewed in Internet Explorer 6.0 at 800x600 with a fedora on
+        </div>
     </div>
 
     <!-- Disclaimer -->
@@ -581,15 +1298,295 @@
             <strong>DISCLAIMER:</strong> WhiteKnight.pro is a satirical website. No actual white-knighting services are offered, sold, or endorsed.
             Any resemblance to real internet behavior is entirely intentional and deeply unfortunate.
             This site is a parody. If you found yourself personally attacked by this page, that's called "self-reflection" and it's free of charge.
-            No fedoras were harmed in the making of this website.
+            No fedoras were harmed in the making of this website. Side effects may include: sudden self-awareness, existential dread, deleting your reply-guy history, and finally touching grass.
+            External links are provided for educational and comedic purposes. We are not responsible for the cringe you encounter beyond this point.
+            <br><br>
+            Built with 100% recycled audacity and zero emotional intelligence.
         </p>
     </div>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 WhiteKnight.pro &mdash; A Division of Nobody Asked Industries, LLC</p>
-        <p><a href="#">Privacy Policy</a> (We read all your threads anyway)</p>
+        <p>Subsidiary of Unsolicited Opinions Corp. &bull; A Fedora Capital Portfolio Company</p>
+        <p><a href="#">Privacy Policy</a> (We read all your threads anyway) &bull; <a href="#">Terms of Simping</a> &bull; <a href="#">Report a Knight</a></p>
     </footer>
+
+    <!-- Konami code easter egg -->
+    <div class="konami-overlay" id="konami">
+        <div class="mega-fedora">&#x1F3A9;</div>
+        <p>YOU HAVE UNLOCKED THE GOLDEN FEDORA</p>
+        <p style="font-size: 1rem; color: #8892b0; margin-top: 0.5rem;">The ultimate white knight achievement. Your mom would be proud. Nobody else is.</p>
+        <button class="close-btn" onclick="document.getElementById('konami').classList.remove('active')">Return to Reality</button>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toast-icon"></span>
+        <span id="toast-msg"></span>
+    </div>
+
+    <script>
+        // ============================
+        // PARTICLE SYSTEM (falling stars/sparkles)
+        // ============================
+        (function() {
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const symbols = ['\u2694', '\u2728', '\u2764', '\uD83D\uDEE1', '\u2B50', '\uD83C\uDFA9'];
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            function createParticle() {
+                return {
+                    x: Math.random() * canvas.width,
+                    y: -20,
+                    speed: 0.3 + Math.random() * 0.7,
+                    symbol: symbols[Math.floor(Math.random() * symbols.length)],
+                    size: 10 + Math.random() * 14,
+                    opacity: 0.1 + Math.random() * 0.2,
+                    drift: (Math.random() - 0.5) * 0.3,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.02
+                };
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (particles.length < 30 && Math.random() < 0.05) {
+                    particles.push(createParticle());
+                }
+                particles.forEach((p, i) => {
+                    p.y += p.speed;
+                    p.x += p.drift;
+                    p.rotation += p.rotSpeed;
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation);
+                    ctx.globalAlpha = p.opacity;
+                    ctx.font = p.size + 'px serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(p.symbol, 0, 0);
+                    ctx.restore();
+                    if (p.y > canvas.height + 20) particles.splice(i, 1);
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ============================
+        // SPARKLE CURSOR TRAIL
+        // ============================
+        (function() {
+            const canvas = document.getElementById('sparkle-trail');
+            const ctx = canvas.getContext('2d');
+            let sparkles = [];
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            document.addEventListener('mousemove', function(e) {
+                for (let i = 0; i < 2; i++) {
+                    sparkles.push({
+                        x: e.clientX + (Math.random() - 0.5) * 10,
+                        y: e.clientY + (Math.random() - 0.5) * 10,
+                        size: 2 + Math.random() * 4,
+                        life: 1,
+                        decay: 0.02 + Math.random() * 0.03,
+                        color: ['#d4af37', '#ff69b4', '#bf00ff', '#fff'][Math.floor(Math.random() * 4)],
+                        vx: (Math.random() - 0.5) * 2,
+                        vy: (Math.random() - 0.5) * 2 - 1
+                    });
+                }
+            });
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                sparkles.forEach((s, i) => {
+                    s.x += s.vx;
+                    s.y += s.vy;
+                    s.life -= s.decay;
+                    if (s.life <= 0) { sparkles.splice(i, 1); return; }
+                    ctx.save();
+                    ctx.globalAlpha = s.life;
+                    ctx.fillStyle = s.color;
+                    ctx.beginPath();
+                    // Draw a star shape
+                    for (let j = 0; j < 5; j++) {
+                        const angle = (j * 4 * Math.PI) / 5 - Math.PI / 2;
+                        const r = s.size * s.life;
+                        const method = j === 0 ? 'moveTo' : 'lineTo';
+                        ctx[method](s.x + Math.cos(angle) * r, s.y + Math.sin(angle) * r);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.restore();
+                });
+                if (sparkles.length > 200) sparkles.splice(0, 50);
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ============================
+        // TYPING EFFECT
+        // ============================
+        (function() {
+            const phrases = [
+                "m'lady, your mentions are safe with me...",
+                "*tips fedora with mass-reporting intent*",
+                "She posted. I must defend. This is the way.",
+                "I wrote 6 paragraphs. She said 'k'. Worth it.",
+                "I'm not like other guys. I use semicolons.",
+                "Ratio + L + you fell off + I'm defending her honor",
+                "She doesn't know I exist but I've memorized her tweet schedule",
+                "Actually, I think you'll find that's problematic...",
+                "Not all heroes wear capes. Some wear fedoras.",
+                "I donate to her stream. She reads my name sometimes. We're basically dating.",
+                "I defended her in the comments. She blocked me. Playing hard to get."
+            ];
+            const el = document.getElementById('typing');
+            let phraseIdx = 0, charIdx = 0, deleting = false;
+
+            function type() {
+                const current = phrases[phraseIdx];
+                if (!deleting) {
+                    el.textContent = current.substring(0, charIdx++);
+                    if (charIdx > current.length) {
+                        deleting = true;
+                        setTimeout(type, 2000);
+                        return;
+                    }
+                    setTimeout(type, 50 + Math.random() * 50);
+                } else {
+                    el.textContent = current.substring(0, charIdx--);
+                    if (charIdx < 0) {
+                        deleting = false;
+                        phraseIdx = (phraseIdx + 1) % phrases.length;
+                        setTimeout(type, 500);
+                        return;
+                    }
+                    setTimeout(type, 25);
+                }
+            }
+            type();
+        })();
+
+        // ============================
+        // ANIMATED COUNTERS
+        // ============================
+        function animateCounter(el, target, duration) {
+            const start = performance.now();
+            function update(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(target * eased).toLocaleString();
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    if (el.id === 'counter-1') animateCounter(el, 14392, 2000);
+                    if (el.id === 'counter-2') animateCounter(el, 87201, 2500);
+                    if (el.id === 'counter-3') animateCounter(el, 420, 1500);
+                    counterObserver.unobserve(el);
+                }
+            });
+        });
+
+        document.querySelectorAll('[id^="counter-"]').forEach(el => counterObserver.observe(el));
+
+        // ============================
+        // CRINGE-O-METER ANIMATION
+        // ============================
+        const meterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.getElementById('cringe-meter').classList.add('animated');
+                    meterObserver.unobserve(entry.target);
+                }
+            });
+        });
+        meterObserver.observe(document.getElementById('cringe-meter'));
+
+        // ============================
+        // TOAST NOTIFICATIONS
+        // ============================
+        function showToast(icon, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-icon').textContent = icon;
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // Random toast on scroll
+        let toastShown = false;
+        window.addEventListener('scroll', function() {
+            if (!toastShown && window.scrollY > 800) {
+                toastShown = true;
+                showToast('\u2694\uFE0F', "A knight senses you scrolling. They are composing a reply to defend your honor.");
+            }
+        });
+
+        // ============================
+        // OATH ACTIVATION
+        // ============================
+        function activateOath() {
+            document.body.style.transition = 'filter 0.5s';
+            document.body.style.filter = 'brightness(2) saturate(2)';
+            setTimeout(() => {
+                document.body.style.filter = 'brightness(1) saturate(1)';
+                showToast('\uD83D\uDEE1\uFE0F', "The Oath has been sworn. Your DMs will now auto-open with 'm'lady.' There is no undo.");
+            }, 500);
+        }
+
+        // ============================
+        // KONAMI CODE EASTER EGG
+        // ============================
+        (function() {
+            const code = [38,38,40,40,37,39,37,39,66,65];
+            let pos = 0;
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === code[pos]) {
+                    pos++;
+                    if (pos === code.length) {
+                        document.getElementById('konami').classList.add('active');
+                        pos = 0;
+                    }
+                } else {
+                    pos = 0;
+                }
+            });
+        })();
+
+        // ============================
+        // INCREMENTAL VISITOR COUNTER
+        // ============================
+        (function() {
+            const el = document.getElementById('visitor-count');
+            let count = 69420;
+            setInterval(() => {
+                count += Math.floor(Math.random() * 3);
+                el.textContent = count.toLocaleString().padStart(10, '0');
+            }, 3000);
+        })();
+    </script>
 
 </body>
 </html>
