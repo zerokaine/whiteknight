@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiteKnight.pro - Join The Order (M'lady's DMs Await)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=MedievalSharp&family=Inter:wght@400;600&family=Permanent+Marker&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --silver: #c0c0c0;
+            --gold: #d4af37;
+            --dark: #1a1a2e;
+            --darker: #0f0f1a;
+            --white: #f0f0f0;
+            --neon-purple: #bf00ff;
+            --cringe-pink: #ff69b4;
+            --matrix-green: #00d98b;
+        }
+
+        body {
+            background: var(--darker);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='28' font-size='28'%3E%E2%9A%94%EF%B8%8F%3C/text%3E%3C/svg%3E") 4 4, auto;
+        }
+
+        /* Particle canvas */
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        #sparkle-trail { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
+
+        /* Marquee */
+        .marquee-bar {
+            background: linear-gradient(90deg, var(--gold), #ff6b35, var(--cringe-pink), var(--neon-purple), var(--matrix-green), var(--gold));
+            background-size: 400% 100%;
+            animation: marquee-bg 5s linear infinite;
+            padding: 0.5rem 0;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 0.85rem;
+            color: var(--darker);
+            white-space: nowrap;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll-marquee 25s linear infinite;
+        }
+
+        @keyframes scroll-marquee { 0% { transform: translateX(100vw); } 100% { transform: translateX(-200%); } }
+        @keyframes marquee-bg { 0% { background-position: 0% 50%; } 100% { background-position: 400% 50%; } }
+
+        /* Nav */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: var(--dark);
+            border-bottom: 1px solid #ffffff10;
+            position: relative;
+            z-index: 50;
+        }
+
+        .top-nav a {
+            color: #8892b0;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .top-nav a:hover { color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+        .top-nav a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(ellipse at center, #16213e 0%, var(--darker) 70%);
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(0, 217, 139, 0.03) 50%, transparent 60%);
+            background-size: 200% 200%;
+            animation: holy-light 5s ease-in-out infinite;
+        }
+
+        @keyframes holy-light { 0%, 100% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } }
+
+        .shield-container { position: relative; z-index: 1; }
+
+        .shield {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite, glow-pulse 2s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 30px rgba(0, 217, 139, 0.4));
+        }
+
+        .shield-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px; height: 180px;
+            border: 2px solid var(--matrix-green);
+            border-radius: 50%;
+            animation: ring-spin 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        .shield-ring:nth-child(2) { width: 230px; height: 230px; animation-direction: reverse; animation-duration: 15s; border-style: dashed; border-color: var(--gold); }
+        .shield-ring:nth-child(3) { width: 280px; height: 280px; animation-duration: 20s; border-style: dotted; border-color: var(--neon-purple); }
+
+        @keyframes ring-spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes glow-pulse { from { filter: drop-shadow(0 0 20px rgba(0,217,139,0.3)); } to { filter: drop-shadow(0 0 60px rgba(0,217,139,0.8)) drop-shadow(0 0 100px rgba(191,0,255,0.3)); } }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-20px) rotate(2deg); } }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--matrix-green), #fff, var(--gold), var(--cringe-pink), var(--neon-purple));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow-shift 6s ease-in-out infinite;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes rainbow-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+        .hero .subtitle {
+            font-family: 'MedievalSharp', cursive;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: var(--matrix-green);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            animation: flicker 3s infinite;
+        }
+
+        @keyframes flicker { 0%,100% { opacity:1; } 92% { opacity:1; } 93% { opacity:0.3; } 94% { opacity:1; } 96% { opacity:0.5; } 97% { opacity:1; } }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #8892b0;
+            max-width: 700px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline em { color: var(--gold); font-style: normal; }
+        .hero .tagline .cringe { color: var(--cringe-pink); font-family: 'Permanent Marker', cursive; }
+        .hero .tagline .green { color: var(--matrix-green); text-shadow: 0 0 10px var(--matrix-green); }
+
+        .typing-effect {
+            display: inline-block;
+            border-right: 2px solid var(--matrix-green);
+            animation: blink-cursor 0.7s step-end infinite;
+            padding-right: 4px;
+            position: relative;
+            z-index: 1;
+            color: var(--cringe-pink);
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            margin-top: 1.5rem;
+            min-height: 2rem;
+        }
+
+        @keyframes blink-cursor { 50% { border-color: transparent; } }
+
+        /* Main content */
+        section { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; position: relative; z-index: 1; }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #8892b0;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Matrix server card */
+        .matrix-hero {
+            background: linear-gradient(135deg, var(--dark), rgba(0, 217, 139, 0.05));
+            border: 2px solid var(--matrix-green);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            box-shadow: 0 0 60px rgba(0, 217, 139, 0.1), inset 0 0 60px rgba(0, 217, 139, 0.03);
+        }
+
+        .matrix-hero::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--matrix-green), var(--gold), var(--neon-purple), var(--matrix-green));
+            background-size: 400% 400%;
+            animation: border-dance 6s linear infinite;
+            border-radius: 21px;
+            z-index: -1;
+        }
+
+        .matrix-hero::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
+            background: linear-gradient(135deg, var(--dark), rgba(0, 217, 139, 0.05));
+            border-radius: 18px;
+            z-index: -1;
+        }
+
+        @keyframes border-dance { 0% { background-position: 0% 50%; } 100% { background-position: 400% 50%; } }
+
+        .matrix-hero .matrix-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        .matrix-hero h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--matrix-green);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(0, 217, 139, 0.3);
+        }
+
+        .matrix-hero .server-url {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            color: var(--gold);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 1rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .matrix-hero p {
+            color: #8892b0;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2.5rem;
+            border: 2px solid var(--matrix-green);
+            color: var(--matrix-green);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.4s;
+            cursor: pointer;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: var(--matrix-green);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover { color: var(--darker); font-weight: 700; }
+        .btn:hover::after { width: 400px; height: 400px; }
+
+        .btn.btn-gold { border-color: var(--gold); color: var(--gold); }
+        .btn.btn-gold::after { background: var(--gold); }
+        .btn.btn-neon { border-color: var(--neon-purple); color: var(--neon-purple); box-shadow: 0 0 15px rgba(191,0,255,0.2); }
+        .btn.btn-neon::after { background: var(--neon-purple); }
+        .btn.btn-neon:hover { color: #fff; }
+
+        .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+
+        /* Why Matrix section */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .why-card {
+            background: var(--dark);
+            border: 1px solid #ffffff10;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--matrix-green), transparent, var(--neon-purple), transparent);
+            animation: card-rotate 8s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .why-card:hover::before { opacity: 0.08; }
+
+        .why-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--matrix-green);
+            box-shadow: 0 20px 60px rgba(0, 217, 139, 0.1);
+        }
+
+        @keyframes card-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .why-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .why-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--white); }
+        .why-card p { color: #8892b0; line-height: 1.6; font-size: 0.9rem; }
+        .why-card .tag {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(0, 217, 139, 0.15);
+            border: 1px solid var(--matrix-green);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--matrix-green);
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Rooms */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .room-card {
+            background: var(--dark);
+            border: 1px solid #ffffff10;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .room-card:hover {
+            border-color: var(--neon-purple);
+            transform: translateY(-3px);
+        }
+
+        .room-card .room-name {
+            font-family: 'Courier New', monospace;
+            color: var(--matrix-green);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .room-card .room-desc {
+            color: #8892b0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .room-card .room-vibe {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 0.7rem;
+            color: var(--cringe-pink);
+        }
+
+        /* Steps */
+        .steps {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #ffffff08;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--matrix-green);
+            text-shadow: 0 0 20px rgba(0, 217, 139, 0.3);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .step h3 { font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--white); }
+        .step p { color: #8892b0; font-size: 0.9rem; line-height: 1.5; }
+        .step code {
+            background: rgba(0, 217, 139, 0.1);
+            color: var(--matrix-green);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        /* Testimonials */
+        .testimonials { display: flex; flex-direction: column; gap: 1.5rem; }
+
+        .testimonial {
+            background: var(--dark);
+            border-left: 3px solid var(--gold);
+            padding: 1.5rem 2rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .testimonial:hover { border-left-color: var(--cringe-pink); transform: translateX(8px); }
+        .testimonial .quote { font-style: italic; color: #ccd6f6; line-height: 1.7; margin-bottom: 0.75rem; }
+        .testimonial .author { color: var(--gold); font-size: 0.85rem; }
+        .testimonial .cringe-level { position: absolute; top: 0.75rem; right: 1rem; font-size: 0.7rem; color: var(--neon-purple); font-family: 'Permanent Marker', cursive; }
+
+        /* FAQ */
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid #ffffff08; padding: 1.5rem 0; }
+        .faq-item h3 { color: var(--white); font-size: 1.05rem; margin-bottom: 0.75rem; }
+        .faq-item h3::before { content: 'Q: '; color: var(--matrix-green); font-family: 'Cinzel', serif; }
+        .faq-item p { color: #8892b0; line-height: 1.6; font-size: 0.95rem; }
+        .faq-item code { background: rgba(0,217,139,0.1); color: var(--matrix-green); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(0, 217, 139, 0.05), var(--darker) 70%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 { margin-bottom: 1rem; }
+        .cta p { color: #8892b0; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+        .oath-text {
+            font-family: 'MedievalSharp', cursive;
+            color: var(--gold);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 2rem auto;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        /* Counter */
+        .visitor-counter {
+            text-align: center;
+            padding: 1rem;
+            background: var(--dark);
+            border-top: 1px solid #ffffff08;
+            position: relative;
+            z-index: 1;
+        }
+
+        .visitor-counter span {
+            font-family: 'Courier New', monospace;
+            color: var(--matrix-green);
+            background: #000;
+            padding: 0.25rem 0.5rem;
+            border: 1px inset #333;
+            font-size: 0.9rem;
+            margin: 0 0.5rem;
+        }
+
+        .visitor-counter .webring { margin-top: 0.5rem; font-size: 0.75rem; color: #8892b0; }
+        .visitor-counter .webring a { color: var(--gold); text-decoration: none; }
+
+        /* Disclaimer */
+        .disclaimer { max-width: 700px; margin: 0 auto; padding: 3rem 2rem; text-align: center; color: #4a5568; font-size: 0.75rem; line-height: 1.6; position: relative; z-index: 1; }
+
+        /* Footer */
+        footer { text-align: center; padding: 2rem; color: #4a5568; font-size: 0.8rem; border-top: 1px solid #ffffff08; position: relative; z-index: 1; }
+        footer a { color: #4a5568; text-decoration: none; }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 2rem; right: 2rem;
+            background: var(--dark); border: 1px solid var(--matrix-green); border-radius: 8px;
+            padding: 1rem 1.5rem; color: var(--white); font-size: 0.85rem;
+            z-index: 200; transform: translateY(100px); opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 350px;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast .toast-icon { font-size: 1.5rem; margin-right: 0.5rem; vertical-align: middle; }
+
+        /* Konami */
+        .konami-overlay { display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,0.95); z-index:10000; justify-content:center; align-items:center; flex-direction:column; text-align:center; }
+        .konami-overlay.active { display:flex; }
+        .konami-overlay .mega { font-size:12rem; animation: mega-spin 2s linear infinite; }
+        .konami-overlay p { font-family:'Cinzel',serif; font-size:1.8rem; color:var(--matrix-green); margin-top:1rem; }
+        .konami-overlay .close-btn { margin-top:2rem; padding:0.5rem 2rem; background:none; border:1px solid var(--matrix-green); color:var(--matrix-green); cursor:pointer; font-size:1rem; border-radius:6px; }
+        @keyframes mega-spin { 0% { transform:rotateY(0deg); } 100% { transform:rotateY(360deg); } }
+
+        @media (max-width: 768px) {
+            .step { flex-direction: column; gap: 0.75rem; }
+            .step-num { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+    <canvas id="sparkle-trail"></canvas>
+
+    <!-- Marquee -->
+    <div class="marquee-bar">
+        <span class="marquee-content">
+            &#x2694; ALERT: THE ROUNDTABLE IS NOW OPEN ON MATRIX &#x2694; REGISTER AT chat.whiteknight.pro BEFORE THE DRAWBRIDGE CLOSES &#x2694; SHE WON'T DM YOU BACK BUT THE KNIGHTS IN CHAT WILL &#x2694; NOW WITH 40% MORE UNSOLICITED OPINIONS &#x2694; FEDORA EMOJI REACT UNLOCKED AT 100 MESSAGES &#x2694; THIS IS A SAFE SPACE FOR PARASOCIAL DELUSIONS &#x2694; TOUCH GRASS? IN THIS ECONOMY? &#x2694;
+        </span>
+    </div>
+
+    <!-- Nav -->
+    <nav class="top-nav">
+        <a href="index.html">Main Hall</a>
+        <a href="chat.html" class="active">Join The Order</a>
+        <a href="chat-noble.html">Noble Edition</a>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="shield-container">
+            <div class="shield-ring"></div>
+            <div class="shield-ring"></div>
+            <div class="shield-ring"></div>
+            <div class="shield">&#x1F5E8;</div>
+        </div>
+        <h1>The Roundtable</h1>
+        <p class="subtitle">~ A Matrix Server For Knights Who Type Too Much ~</p>
+        <p class="tagline">
+            The sacred gathering place where <em>paragraphs flow freely</em>,<br>
+            <span class="cringe">unsolicited opinions</span> are currency,<br>
+            and nobody has ever once <span class="green">touched grass</span>.
+        </p>
+        <div class="typing-effect" id="typing"></div>
+    </div>
+
+    <!-- Main Matrix CTA -->
+    <section>
+        <div class="matrix-hero">
+            <div class="matrix-icon">&#x1F3F0;</div>
+            <h3>Enter The Castle</h3>
+            <div class="server-url">chat.whiteknight.pro</div>
+            <p>
+                Our castle runs on <strong>Matrix</strong> &mdash; the decentralized, end-to-end encrypted protocol for
+                noble knights who don't trust Big Tech with their hot takes about anime and chivalry.
+                Your white-knighting is now <em>privacy-preserving</em>. M'lady's conversations, secured by math.
+            </p>
+            <div class="btn-group">
+                <a href="https://chat.whiteknight.pro" class="btn" target="_blank" rel="noopener">&#x2694; Register Now &#x2694;</a>
+                <a href="https://chat.whiteknight.pro" class="btn btn-gold" target="_blank" rel="noopener">&#x1F451; I Already Have An Account</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Matrix / Why Us -->
+    <section>
+        <h2>Why Our Roundtable Rules</h2>
+        <p class="section-subtitle">other servers could never (and wouldn't want to)</p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="icon">&#x1F512;</div>
+                <h3>End-to-End Encrypted Cringe</h3>
+                <p>Your "m'lady" DMs are protected by state-of-the-art encryption. Not even we can see them. Thank God.</p>
+                <span class="tag">PRIVACY FIRST</span>
+            </div>
+            <div class="why-card">
+                <div class="icon">&#x1F310;</div>
+                <h3>Decentralized Chivalry</h3>
+                <p>Matrix is federated, meaning no single corporation controls your ability to write 6-paragraph replies to strangers. Freedom of cringe.</p>
+                <span class="tag">FEDERATED</span>
+            </div>
+            <div class="why-card">
+                <div class="icon">&#x1F4AC;</div>
+                <h3>24/7 White-Knighting Arena</h3>
+                <p>Someone is always online to validate your takes, argue about nothing, and say "this" to your message at 4 AM. The discourse never sleeps.</p>
+                <span class="tag">ALWAYS ONLINE</span>
+            </div>
+            <div class="why-card">
+                <div class="icon">&#x1F3A9;</div>
+                <h3>Custom Fedora Reactions</h3>
+                <p>We have 47 custom emoji packs including fedora variants, katana salutes, and a "well actually" sticker that auto-sends when you type more than 200 words.</p>
+                <span class="tag">AESTHETIC</span>
+            </div>
+            <div class="why-card">
+                <div class="icon">&#x1F916;</div>
+                <h3>Simp Detection Bot</h3>
+                <p>Our custom bot analyzes your messages and assigns a real-time Simp Score. Leaderboard resets monthly. Current champion: Sir_Replies_A_Lot (score: 9,847).</p>
+                <span class="tag">GAMIFIED</span>
+            </div>
+            <div class="why-card">
+                <div class="icon">&#x2694;</div>
+                <h3>No Discord, No Masters</h3>
+                <p>We left Discord because a corporation shouldn't control where knights gather. Also we got banned for "excessive reply-guying in partner servers." Unrelated.</p>
+                <span class="tag">SELF-HOSTED</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms -->
+    <section>
+        <h2>The Castle Chambers</h2>
+        <p class="section-subtitle">each room has its own flavor of delusion</p>
+        <div class="rooms-grid">
+            <div class="room-card">
+                <div class="room-name">#the-great-hall</div>
+                <div class="room-desc">General chat. Say hi. Write 4 paragraphs introducing yourself. Nobody will read past the first sentence. This is the way.</div>
+                <div class="room-vibe">vibe: chaotic neutral</div>
+            </div>
+            <div class="room-card">
+                <div class="room-name">#debate-arena</div>
+                <div class="room-desc">Structured arguments about completely unstructured topics. Is cereal soup? Is a hot dog a sandwich? Bring sources or face banishment.</div>
+                <div class="room-vibe">vibe: weaponized pedantry</div>
+            </div>
+            <div class="room-card">
+                <div class="room-name">#cringe-confessional</div>
+                <div class="room-desc">Anonymously confess your worst white-knight moments. Absolution granted by peer vote. Most cringe confession wins a custom role.</div>
+                <div class="room-vibe">vibe: group therapy meets roast</div>
+            </div>
+            <div class="room-card">
+                <div class="room-name">#touch-grass-challenge</div>
+                <div class="room-desc">Daily challenges to go outside, talk to real humans, and report back. Current streak record: 3 days. Most participants relapse within hours.</div>
+                <div class="room-vibe">vibe: rehab but make it funny</div>
+            </div>
+            <div class="room-card">
+                <div class="room-name">#medieval-history</div>
+                <div class="room-desc">Actually educational discussions about real knights, castles, and medieval warfare. The one room where being a nerd is the point.</div>
+                <div class="room-vibe">vibe: surprisingly wholesome</div>
+            </div>
+            <div class="room-card">
+                <div class="room-name">#fed-watch</div>
+                <div class="room-desc">Privacy, self-hosting, OPSEC, and federation nerd talk. For knights who want their cringe to be surveillance-proof.</div>
+                <div class="room-vibe">vibe: tinfoil meets based</div>
+            </div>
+            <div class="room-card">
+                <div class="room-name">#hall-of-shame</div>
+                <div class="room-desc">Post screenshots of the wildest white-knighting found in the wild. Commentary encouraged. Censored usernames mandatory. We have standards (barely).</div>
+                <div class="room-vibe">vibe: safari into cringe</div>
+            </div>
+            <div class="room-card">
+                <div class="room-name">#off-topic</div>
+                <div class="room-desc">Anything goes. Memes, late-night thoughts, existential crises, and the occasional "should I send this DM?" (the answer is always no).</div>
+                <div class="room-vibe">vibe: unhinged but lovable</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Join -->
+    <section>
+        <h2>How To Storm The Castle</h2>
+        <p class="section-subtitle">it's easier than getting a text back, we promise</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">I</div>
+                <div>
+                    <h3>Get a Matrix Client</h3>
+                    <p>Download <a href="https://element.io" target="_blank" rel="noopener" style="color: var(--matrix-green);">Element</a> (desktop/mobile) or use any Matrix-compatible client. It's like Discord but your data isn't being sold to train an AI that will eventually replace you.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">II</div>
+                <div>
+                    <h3>Register on Our Server</h3>
+                    <p>Point your client at <code>chat.whiteknight.pro</code> or hit the register button above. Choose a username that reflects your inner knight. Suggestions: <code>SirRepliesALot</code>, <code>M_Lady_Defender</code>, <code>xX_Chivalry_Xx</code>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">III</div>
+                <div>
+                    <h3>Introduce Yourself (Keep It Under 500 Words)</h3>
+                    <p>Head to #the-great-hall and drop your introduction. Pro tip: nobody cares about your MBTI type but share it anyway. Bonus points if your intro includes the phrase "I'm not like other guys."</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">IV</div>
+                <div>
+                    <h3>Begin Thy Quest</h3>
+                    <p>Join rooms, share memes, debate whether a burrito is a sandwich, and find your fellow knights. Just... maybe don't write a 12-paragraph essay about why you deserve mod. Not yet. Give it at least a week.</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://chat.whiteknight.pro" class="btn" target="_blank" rel="noopener">&#x1F3F0; Register at chat.whiteknight.pro</a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <h2>What The Knights Are Saying</h2>
+        <p class="section-subtitle">real messages* (*dramatized for comedic effect) from the server</p>
+        <div class="testimonials">
+            <div class="testimonial">
+                <span class="cringe-level">CRINGE LVL: 4/10</span>
+                <p class="quote">"Finally a chat server where I can write 8 paragraphs about why pineapple belongs on pizza and people actually respond with COUNTER-paragraphs. This is what the internet was supposed to be."</p>
+                <p class="author">- SirDebatesALot, Great Hall Regular</p>
+            </div>
+            <div class="testimonial">
+                <span class="cringe-level">CRINGE LVL: 7/10</span>
+                <p class="quote">"I joined to troll. I stayed because the medieval history channel is actually fire and someone taught me about siege warfare at 2 AM. I have never felt more educated and more concerned about myself simultaneously."</p>
+                <p class="author">- xX_IronicallyHere_Xx, Reformed Troll</p>
+            </div>
+            <div class="testimonial">
+                <span class="cringe-level">CRINGE LVL: 9/10</span>
+                <p class="quote">"The simp detection bot gave me a score of 9,200 on my first day. I've never been so proud and so ashamed at the same time. The #cringe-confessional really is just group therapy with memes."</p>
+                <p class="author">- ParagraphPrince, Grandmaster Simp Tier</p>
+            </div>
+            <div class="testimonial">
+                <span class="cringe-level">CRINGE LVL: 2/10</span>
+                <p class="quote">"Honestly? It's a pretty solid community under all the irony. Self-hosted Matrix, good mods, privacy-focused, and people actually help each other out. The cringe is the vibe, but the people are genuinely decent."</p>
+                <p class="author">- ActuallyNormal, Voice of Reason</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2>Frequently Questioned Logistics</h2>
+        <p class="section-subtitle">yes we anticipated your concerns. no we will not be taking them seriously.</p>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>What is Matrix?</h3>
+                <p>Matrix is an open-source, decentralized, end-to-end encrypted communication protocol. Think of it as Discord if Discord respected your privacy, wasn't owned by a corporation, and didn't sell your data to advertisers. Our server at <code>chat.whiteknight.pro</code> is fully self-hosted, meaning your cringe stays in our castle.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need to install anything?</h3>
+                <p>You can use Element (the most popular Matrix client) on desktop, mobile, or web. Or use any other Matrix client &mdash; there are dozens. Just set the homeserver to <code>chat.whiteknight.pro</code> when registering. It takes about 30 seconds, which is less time than it took you to write your last reply-guy essay.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is this server actually cringe or is it ironic?</h3>
+                <p>Yes. The answer is yes. The white-knight theme is satirical, but the community is real. Think of it as a bunch of self-aware internet people who bonded over making fun of white-knighting and accidentally became friends. The cringe is the brand. The friendship is the secret.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I federate with other Matrix servers?</h3>
+                <p>Absolutely. That's the whole point of Matrix. You can join our rooms from any Matrix homeserver. Your existing <code>@user:matrix.org</code> account works fine. But registering directly at <code>chat.whiteknight.pro</code> gets you the full knight experience, custom emoji, and bragging rights.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What are the rules?</h3>
+                <p>Don't be actually terrible. The white-knighting is ironic, the decency is not. No harassment, no doxxing, no genuine creeping. Basically: be the kind of knight that real medieval historians would respect, not the kind that gets screenshotted for r/whiteknighting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <div class="cta">
+        <h2>The Drawbridge Is Open</h2>
+        <p>No application. No interview. No LinkedIn profile review. Just register, pick a username that you'll be mildly embarrassed about in 6 months, and join the most self-aware community of reformed internet knights.</p>
+        <div class="oath-text">
+            "I swear to shitpost responsibly,<br>
+            to debate with sources (sometimes),<br>
+            to touch grass at least once a week,<br>
+            and to never, ever, send an unsolicited 'hey' DM.<br>
+            ...okay maybe just one."
+        </div>
+        <a href="https://chat.whiteknight.pro" class="btn btn-neon" target="_blank" rel="noopener">&#x1F3F0; STORM THE CASTLE &mdash; chat.whiteknight.pro &#x1F3F0;</a>
+    </div>
+
+    <!-- Visitor counter -->
+    <div class="visitor-counter">
+        <span id="visitor-count">000,042,069</span> BRAVE SOULS HAVE CONSIDERED REGISTERING (12 ACTUALLY DID)
+        <div class="webring">
+            Best experienced in Element Desktop with dark mode on and a fedora within arm's reach
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+        <p>
+            <strong>DISCLAIMER:</strong> WhiteKnight.pro is a satirical community. The Matrix server is real, the community is real, and the encryption is real.
+            The white-knighting is ironic. If you join this server to actually white-knight people in DMs, you will be roasted, mocked, and given the "Sir Cringe" role.
+            chat.whiteknight.pro is a self-hosted Matrix instance. Your data stays on our server. We don't sell it. We barely understand it. Side effects of joining may include: accidental friendships, medieval history knowledge, and a worrying amount of fedora-related humor.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 WhiteKnight.pro &mdash; A Division of Nobody Asked Industries, LLC</p>
+        <p>Powered by Matrix &bull; Self-Hosted with Paranoia &bull; Encrypted with Attitude</p>
+        <p><a href="index.html">Main Hall</a> &bull; <a href="chat-noble.html">Noble Edition</a> &bull; <a href="https://chat.whiteknight.pro" target="_blank" rel="noopener">chat.whiteknight.pro</a></p>
+    </footer>
+
+    <!-- Konami -->
+    <div class="konami-overlay" id="konami">
+        <div class="mega">&#x1F3F0;</div>
+        <p>SECRET CHAMBER UNLOCKED</p>
+        <p style="font-size:1rem; color:#8892b0; margin-top:0.5rem;">You found the secret room. It's just this screen. What did you expect?</p>
+        <button class="close-btn" onclick="document.getElementById('konami').classList.remove('active')">Return to Reality</button>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toast-icon"></span>
+        <span id="toast-msg"></span>
+    </div>
+
+    <script>
+        // Particles
+        (function(){const c=document.getElementById('particles'),x=c.getContext('2d');let p=[];const s=['\u2694','\u2728','\u2764','\uD83D\uDEE1','\u2B50','\uD83C\uDFA9','\uD83D\uDDE8'];function r(){c.width=window.innerWidth;c.height=window.innerHeight}r();window.addEventListener('resize',r);function n(){return{x:Math.random()*c.width,y:-20,speed:0.3+Math.random()*0.7,symbol:s[Math.floor(Math.random()*s.length)],size:10+Math.random()*14,opacity:0.1+Math.random()*0.15,drift:(Math.random()-0.5)*0.3,rotation:Math.random()*Math.PI*2,rotSpeed:(Math.random()-0.5)*0.02}}function a(){x.clearRect(0,0,c.width,c.height);if(p.length<25&&Math.random()<0.04)p.push(n());p.forEach((q,i)=>{q.y+=q.speed;q.x+=q.drift;q.rotation+=q.rotSpeed;x.save();x.translate(q.x,q.y);x.rotate(q.rotation);x.globalAlpha=q.opacity;x.font=q.size+'px serif';x.textAlign='center';x.fillText(q.symbol,0,0);x.restore();if(q.y>c.height+20)p.splice(i,1)});requestAnimationFrame(a)}a()})();
+
+        // Sparkle trail
+        (function(){const c=document.getElementById('sparkle-trail'),x=c.getContext('2d');let s=[];function r(){c.width=window.innerWidth;c.height=window.innerHeight}r();window.addEventListener('resize',r);document.addEventListener('mousemove',function(e){for(let i=0;i<2;i++)s.push({x:e.clientX+(Math.random()-0.5)*10,y:e.clientY+(Math.random()-0.5)*10,size:2+Math.random()*4,life:1,decay:0.02+Math.random()*0.03,color:['#00d98b','#d4af37','#ff69b4','#bf00ff'][Math.floor(Math.random()*4)],vx:(Math.random()-0.5)*2,vy:(Math.random()-0.5)*2-1})});function a(){x.clearRect(0,0,c.width,c.height);s.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;if(p.life<=0){s.splice(i,1);return}x.save();x.globalAlpha=p.life;x.fillStyle=p.color;x.beginPath();for(let j=0;j<5;j++){const ang=(j*4*Math.PI)/5-Math.PI/2,rad=p.size*p.life;ctx_method=j===0?'moveTo':'lineTo';x[ctx_method](p.x+Math.cos(ang)*rad,p.y+Math.sin(ang)*rad)}x.closePath();x.fill();x.restore()});if(s.length>200)s.splice(0,50);requestAnimationFrame(a)}a()})();
+
+        // Typing effect
+        (function(){const phrases=["Connecting to chat.whiteknight.pro...", "m'lady, your messages are end-to-end encrypted...", "Sir_Replies_A_Lot has entered the chat", "The discourse never sleeps. Neither do we.", "Touch grass? We have #touch-grass-challenge for that.", "Registration takes 30 seconds. Regret takes longer.", "Federated, encrypted, unhinged.", "Your cringe is safe here. Literally. E2EE.", "Someone is typing a 6-paragraph reply right now..."];const el=document.getElementById('typing');let pi=0,ci=0,del=false;function t(){const cur=phrases[pi];if(!del){el.textContent=cur.substring(0,ci++);if(ci>cur.length){del=true;setTimeout(t,2000);return}setTimeout(t,50+Math.random()*50)}else{el.textContent=cur.substring(0,ci--);if(ci<0){del=false;pi=(pi+1)%phrases.length;setTimeout(t,500);return}setTimeout(t,25)}};t()})();
+
+        // Toast
+        function showToast(i,m){const t=document.getElementById('toast');document.getElementById('toast-icon').textContent=i;document.getElementById('toast-msg').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000)}
+        let ts=false;window.addEventListener('scroll',function(){if(!ts&&window.scrollY>600){ts=true;showToast('\uD83C\uDFF0','A knight senses your curiosity. The Roundtable awaits at chat.whiteknight.pro')}});
+
+        // Visitor counter
+        (function(){const e=document.getElementById('visitor-count');let c=42069;setInterval(()=>{c+=Math.floor(Math.random()*3);e.textContent=c.toLocaleString().padStart(10,'0')},3000)})();
+
+        // Konami
+        (function(){const code=[38,38,40,40,37,39,37,39,66,65];let pos=0;document.addEventListener('keydown',function(e){if(e.keyCode===code[pos]){pos++;if(pos===code.length){document.getElementById('konami').classList.add('active');pos=0}}else pos=0})})();
+    </script>
+
+</body>
+</html>
