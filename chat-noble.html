@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiteKnight.pro - Community</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cream: #faf8f5;
+            --warm-white: #f5f0eb;
+            --charcoal: #2c2c2c;
+            --deep: #1a1a1a;
+            --gold: #b8963e;
+            --gold-light: #d4af37;
+            --gold-soft: rgba(184, 150, 62, 0.1);
+            --text: #4a4a4a;
+            --text-light: #7a7a7a;
+            --border: #e8e2d9;
+            --green: #2d8659;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 3rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--cream);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        nav .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav .nav-links a:hover { color: var(--charcoal); }
+        nav .nav-links a.active { color: var(--gold); }
+
+        nav .nav-cta {
+            padding: 0.5rem 1.25rem;
+            background: var(--charcoal);
+            color: var(--cream) !important;
+            border-radius: 6px;
+            font-size: 0.8rem !important;
+            font-weight: 500 !important;
+            transition: background 0.3s !important;
+        }
+
+        nav .nav-cta:hover { background: var(--gold) !important; color: #fff !important; }
+
+        /* Hero */
+        .hero {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: var(--gold-soft);
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            background: var(--charcoal);
+            color: var(--cream);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover { background: var(--gold); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            background: transparent;
+            color: var(--charcoal);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+        .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* Server card */
+        .server-card {
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .server-card .server-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gold-soft);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1.25rem;
+        }
+
+        .server-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .server-url {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 1.1rem;
+            color: var(--gold);
+            background: var(--gold-soft);
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 0.75rem 0 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .server-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Divider */
+        .divider {
+            max-width: 100px;
+            margin: 0 auto 4rem;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+        .feature .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gold-soft);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin: 0 auto 1rem;
+        }
+
+        .feature h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* Rooms */
+        .rooms-list {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .room {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .room:last-child { border-bottom: none; }
+
+        .room-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-soft);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+
+        .room-info h3 {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+        }
+
+        .room-info p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Steps */
+        .steps-list {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .step:last-child { border-bottom: none; }
+
+        .step-num {
+            width: 36px;
+            height: 36px;
+            background: var(--charcoal);
+            color: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step h3 { font-size: 0.95rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.3rem; }
+        .step p { color: var(--text-light); font-size: 0.85rem; }
+        .step a { color: var(--gold); text-decoration: none; font-weight: 500; }
+        .step a:hover { text-decoration: underline; }
+        .step code { background: var(--gold-soft); color: var(--gold); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.8rem; }
+
+        /* Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .value {
+            padding: 1.5rem;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .value h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .value p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* Quotes */
+        .quotes {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .quote-card {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quote-card:last-child { border-bottom: none; }
+
+        .quote-card blockquote {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .quote-card cite {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-style: normal;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: var(--warm-white);
+            border-top: 1px solid var(--border);
+        }
+
+        .cta-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-light);
+            max-width: 450px;
+            margin: 0 auto 2rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:last-child { border-bottom: none; }
+
+        .faq-item h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .faq-item code { background: var(--gold-soft); color: var(--gold); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.8rem; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        footer a { color: var(--text-light); text-decoration: none; }
+        footer a:hover { color: var(--gold); }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            nav .nav-links { gap: 1rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: 1fr; }
+            .hero { padding: 4rem 1.5rem 3rem; }
+        }
+
+        @media (max-width: 500px) {
+            nav .nav-links a:not(.nav-cta) { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <a href="index.html" class="logo">WHITEKNIGHT</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="chat.html">Satirical Version</a>
+            <a href="chat-noble.html" class="active">Community</a>
+            <a href="https://chat.whiteknight.pro" target="_blank" rel="noopener" class="nav-cta">Join</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">Open Community</div>
+        <h1>A Place for Good Conversation</h1>
+        <p>
+            An independent, privacy-respecting community built on Matrix.
+            Good people, thoughtful discussion, and the kind of place the internet needs more of.
+        </p>
+        <div class="btn-group">
+            <a href="https://chat.whiteknight.pro" class="btn-primary" target="_blank" rel="noopener">Register at chat.whiteknight.pro</a>
+            <a href="#how-to-join" class="btn-secondary">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Server Card -->
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
+        <div class="server-card">
+            <div class="server-icon">&#x1F3F0;</div>
+            <h3>Our Matrix Server</h3>
+            <div class="server-url">chat.whiteknight.pro</div>
+            <p>
+                A self-hosted Matrix homeserver with end-to-end encryption.
+                Your conversations stay private, your data stays on our server, and no corporation
+                is monetizing your discussions.
+            </p>
+            <a href="https://chat.whiteknight.pro" class="btn-primary" target="_blank" rel="noopener">Create Your Account</a>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Why Matrix -->
+    <section>
+        <div class="section-header">
+            <h2>Why We Chose Matrix</h2>
+            <p>We believe community infrastructure should respect the people who use it.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">&#x1F512;</div>
+                <h3>End-to-End Encrypted</h3>
+                <p>All private conversations are encrypted by default. Not even server administrators can read your messages.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F310;</div>
+                <h3>Federated &amp; Open</h3>
+                <p>Matrix is an open protocol. You can join from any Matrix homeserver, or register directly with us. No lock-in.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F6E1;</div>
+                <h3>Self-Hosted</h3>
+                <p>We run our own server. Your data isn't sitting on a corporate cloud being mined for advertising insights.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F4AC;</div>
+                <h3>Cross-Platform</h3>
+                <p>Access from desktop, mobile, or web through Element or dozens of other Matrix-compatible clients.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x2699;</div>
+                <h3>No Tracking</h3>
+                <p>No analytics, no telemetry, no ad targeting. We don't collect what we don't need.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F91D;</div>
+                <h3>Community-Governed</h3>
+                <p>Decisions are made transparently. The community shapes the rules, the culture, and the direction.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Rooms -->
+    <section>
+        <div class="section-header">
+            <h2>Spaces &amp; Rooms</h2>
+            <p>Focused conversations across a range of interests.</p>
+        </div>
+        <div class="rooms-list">
+            <div class="room">
+                <div class="room-icon">&#x1F3E0;</div>
+                <div class="room-info">
+                    <h3>#general</h3>
+                    <p>The main gathering place. Introductions, casual conversation, and community updates.</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-icon">&#x1F4DA;</div>
+                <div class="room-info">
+                    <h3>#history</h3>
+                    <p>Discussions about history, medieval and modern. From the Crusades to the Cold War &mdash; thoughtful perspectives welcome.</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-icon">&#x1F4BB;</div>
+                <div class="room-info">
+                    <h3>#tech</h3>
+                    <p>Self-hosting, privacy tools, open-source projects, and general technology discussion.</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-icon">&#x1F4AC;</div>
+                <div class="room-info">
+                    <h3>#discussion</h3>
+                    <p>Longer-form conversations about ideas, current events, philosophy, and anything worth thinking about.</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-icon">&#x1F3AE;</div>
+                <div class="room-info">
+                    <h3>#off-topic</h3>
+                    <p>Everything else. Memes, music, recommendations, and the conversations that don't fit anywhere else.</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-icon">&#x1F6E0;</div>
+                <div class="room-info">
+                    <h3>#feedback</h3>
+                    <p>Suggestions for the community, server improvements, and open discussion about how we can do better.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- How to Join -->
+    <section id="how-to-join">
+        <div class="section-header">
+            <h2>Getting Started</h2>
+            <p>Three steps to join the community.</p>
+        </div>
+        <div class="steps-list">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Get a Matrix Client</h3>
+                    <p>We recommend <a href="https://element.io" target="_blank" rel="noopener">Element</a>, available on desktop (Windows, Mac, Linux), mobile (iOS, Android), and web. Any Matrix-compatible client will work.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>Register Your Account</h3>
+                    <p>Visit <a href="https://chat.whiteknight.pro" target="_blank" rel="noopener">chat.whiteknight.pro</a> to create an account, or set the homeserver to <code>chat.whiteknight.pro</code> in your client's registration screen. Already have a Matrix account elsewhere? You can join our public rooms directly via federation.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Say Hello</h3>
+                    <p>Head to #general and introduce yourself. We're a friendly group. No pressure, no essay required &mdash; a simple hello is perfect.</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="https://chat.whiteknight.pro" class="btn-primary" target="_blank" rel="noopener">Register at chat.whiteknight.pro</a>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Values -->
+    <section>
+        <div class="section-header">
+            <h2>What We Stand For</h2>
+            <p>The principles that guide how we build and maintain this community.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value">
+                <h3>Respect &amp; Decency</h3>
+                <p>Treat people the way you'd want to be treated. Disagreement is welcome; disrespect is not. We value the person behind the screen.</p>
+            </div>
+            <div class="value">
+                <h3>Privacy by Default</h3>
+                <p>Your data is yours. We self-host because we believe infrastructure should serve the community, not monetize it.</p>
+            </div>
+            <div class="value">
+                <h3>Genuine Conversation</h3>
+                <p>We're here for real discussion, not performative virtue or empty hot takes. Say what you mean. Listen to understand, not just to reply.</p>
+            </div>
+            <div class="value">
+                <h3>Open &amp; Transparent</h3>
+                <p>Community decisions, moderation policies, and server configuration are discussed openly. No hidden agendas.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Quotes -->
+    <section>
+        <div class="section-header">
+            <h2>From the Community</h2>
+        </div>
+        <div class="quotes">
+            <div class="quote-card">
+                <blockquote>"It's refreshing to have a space where people actually listen and respond thoughtfully. The self-hosting ethos attracted me, the people made me stay."</blockquote>
+                <cite>&mdash; Community Member</cite>
+            </div>
+            <div class="quote-card">
+                <blockquote>"I learned more about privacy and self-hosting in a month here than in a year of reading blog posts. People genuinely want to help each other."</blockquote>
+                <cite>&mdash; Community Member</cite>
+            </div>
+            <div class="quote-card">
+                <blockquote>"Small enough to know people by name, large enough to always have someone to talk to. That's a rare balance."</blockquote>
+                <cite>&mdash; Community Member</cite>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- FAQ -->
+    <section>
+        <div class="section-header">
+            <h2>Common Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>What is Matrix?</h3>
+                <p>Matrix is an open, decentralized communication protocol. It's similar to email in that you can communicate across different servers, but built for real-time chat with modern features like end-to-end encryption, voice/video calls, and rich media sharing. Learn more at <a href="https://matrix.org" target="_blank" rel="noopener" style="color: var(--gold);">matrix.org</a>.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need to register on your server?</h3>
+                <p>Not necessarily. If you already have a Matrix account (e.g., on matrix.org), you can join our public rooms via federation. However, registering at <code>chat.whiteknight.pro</code> gives you the full experience and supports our self-hosted infrastructure.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is my data private?</h3>
+                <p>Yes. Private messages are end-to-end encrypted. The server is self-hosted &mdash; we don't use third-party cloud hosting that could access your data. We don't run analytics, sell data, or use tracking of any kind.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What's the community like?</h3>
+                <p>Friendly, curious, and respectful. We're a mix of people interested in technology, history, privacy, and good conversation. The community skews thoughtful &mdash; we'd rather have a good discussion than a fast one.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What are the rules?</h3>
+                <p>Be respectful, be genuine, and don't be harmful. Full community guidelines are available on the server. The short version: treat others well, contribute positively, and remember there's a real person on the other side of every message.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2>Join the Conversation</h2>
+        <p>Good communities don't just happen &mdash; they're built by people who show up. We'd be glad to have you.</p>
+        <a href="https://chat.whiteknight.pro" class="btn-primary" target="_blank" rel="noopener">Register at chat.whiteknight.pro</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="chat.html">Satirical Version</a>
+            <a href="https://chat.whiteknight.pro" target="_blank" rel="noopener">chat.whiteknight.pro</a>
+            <a href="https://matrix.org" target="_blank" rel="noopener">About Matrix</a>
+            <a href="https://element.io" target="_blank" rel="noopener">Get Element</a>
+        </div>
+        <p>&copy; 2026 WhiteKnight.pro &mdash; Self-hosted. Community-driven. Privacy-first.</p>
+    </footer>
+
+</body>
+</html>
